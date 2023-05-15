@@ -6,6 +6,7 @@
 #include <linux/usb.h>		/* Needed for driver macros*/
 #include <linux/usb/input.h>
 #include <linux/hid.h>
+#include <linux/interrupt.h>
 
 MODULE_AUTHOR("jng");
 MODULE_LICENSE("GPL");
@@ -28,10 +29,23 @@ static struct usb_device_id definition_table[] = {
 };
 MODULE_DEVICE_TABLE(usb, definition_table);
 
+irq_return_t handler(int irq, void *dev_id, struct pt_regs *regs){
+	printk(KERN_INFO "IRQ HANDLED !\n");
+	return IRQ_HANDLED;
+}
+
 // function to handle probe
 int handle_probe(struct usb_interface *intf, const struct usb_device_id *id)
 {
-	printk(KERN_INFO "Usb PROBED !\n");
+	// request interrupt line here and pray it works
+
+	// if interrupt here wrong or irq, gotta ditch the usb and go PURE PS2
+	int kb_irq = 0;
+	int req_irq_result = request_irq(kb_irq, handler, 0, "my_keyboard", NULL);
+	if (req_irq_result < 0)
+		printk(KERN_INFO "IRQ REQUEST ERR !\n");
+	else
+		printk(KERN_INFO "IRQ REQUEST OK !\n");
 	return 0;
 }
 
