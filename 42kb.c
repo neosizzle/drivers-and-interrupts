@@ -69,7 +69,7 @@ int init_module(void)
 	int kb_irq = 0;
 	int req_irq_result = request_irq(kb_irq, &handler, IRQF_SHARED, "my_keyboard", NULL);
 	if (req_irq_result < 0)
-		printk(KERN_INFO "IRQ REQUEST ERR !\n");
+		printk(KERN_INFO "IRQ REQUEST ERR !: %d\n", req_irq_result);
 	else
 		printk(KERN_INFO "IRQ REQUEST OK !\n");
 
