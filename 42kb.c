@@ -29,7 +29,7 @@ static struct usb_device_id definition_table[] = {
 };
 MODULE_DEVICE_TABLE(usb, definition_table);
 
-irqreturn_t handler(int irq, void *dev_id, struct pt_regs *regs){
+irqreturn_t *handler(int irq, void *dev_id, struct pt_regs *regs){
 	printk(KERN_INFO "IRQ HANDLED !\n");
 	return IRQ_HANDLED;
 }
