@@ -37,15 +37,6 @@ irqreturn_t handler(int irq, void *dev_id){
 // function to handle probe
 int handle_probe(struct usb_interface *intf, const struct usb_device_id *id)
 {
-	// request interrupt line here and pray it works
-
-	// if interrupt here wrong or irq, gotta ditch the usb and go PURE PS2
-	int kb_irq = 0;
-	int req_irq_result = request_irq(kb_irq, &handler, 0, "my_keyboard", NULL);
-	if (req_irq_result < 0)
-		printk(KERN_INFO "IRQ REQUEST ERR !\n");
-	else
-		printk(KERN_INFO "IRQ REQUEST OK !\n");
 	return 0;
 }
 
@@ -72,6 +63,15 @@ int init_module(void)
 	 * A non 0 return means init_module failed; module can't be loaded. 
 	 */
 	int result = usb_register(&input_driver);
+	// request interrupt line here and pray it works
+
+	// if interrupt here wrong or irq, gotta ditch the usb and go PURE PS2
+	int kb_irq = 0;
+	int req_irq_result = request_irq(kb_irq, &handler, 0, "my_keyboard", NULL);
+	if (req_irq_result < 0)
+		printk(KERN_INFO "IRQ REQUEST ERR !\n");
+	else
+		printk(KERN_INFO "IRQ REQUEST OK !\n");
 	if (result)
 		printk(KERN_INFO "Usb register failed !\n");
 	return 0;
