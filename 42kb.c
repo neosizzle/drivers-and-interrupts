@@ -66,7 +66,7 @@ int init_module(void)
 	// request interrupt line here and pray it works
 
 	// if interrupt here wrong or irq, gotta ditch the usb and go PURE PS2
-	int kb_irq = 0x60;
+	int kb_irq = 1
 	int req_irq_result = request_irq(kb_irq, &handler, IRQF_SHARED, "my_keyboard", NULL);
 	if (req_irq_result < 0)
 		printk(KERN_INFO "IRQ REQUEST ERR !: %d\n", req_irq_result);
