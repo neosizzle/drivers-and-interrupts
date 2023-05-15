@@ -29,7 +29,7 @@ static struct usb_device_id definition_table[] = {
 };
 MODULE_DEVICE_TABLE(usb, definition_table);
 
-irqreturn_t *handler(int irq, void *dev_id, struct pt_regs *regs){
+irqreturn_t handler(int irq, void *dev_id, struct pt_regs *regs){
 	printk(KERN_INFO "IRQ HANDLED !\n");
 	return IRQ_HANDLED;
 }
@@ -41,7 +41,7 @@ int handle_probe(struct usb_interface *intf, const struct usb_device_id *id)
 
 	// if interrupt here wrong or irq, gotta ditch the usb and go PURE PS2
 	int kb_irq = 0;
-	int req_irq_result = request_irq(kb_irq, handler, 0, "my_keyboard", NULL);
+	int req_irq_result = request_irq(kb_irq, &handler, 0, "my_keyboard", NULL);
 	if (req_irq_result < 0)
 		printk(KERN_INFO "IRQ REQUEST ERR !\n");
 	else
