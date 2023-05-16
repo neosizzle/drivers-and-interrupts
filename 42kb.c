@@ -58,7 +58,7 @@ static struct usb_driver input_driver = {
 
 int init_module(void)
 {
-	printk(KERN_INFO "Hello world !\n");
+	print_hello();
 
 	/* 
 	 * A non 0 return means init_module failed; module can't be loaded. 
