@@ -1,5 +1,5 @@
 obj-m += 42kb.o
-42kb-y := main.o usb.o utils.o
+42kb-y := main.o usb.o utils.o device.o
 
 KDIR = /lib/modules/$(shell uname -r)/build
 
