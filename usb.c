@@ -4,6 +4,7 @@
 
 #include <linux/usb.h>		/* Needed for driver macros*/
 #include <linux/usb/input.h>
+#include <linux/hid.h>
 
 /*  
  * definition_table - hardware definitions for mouse and keyboard

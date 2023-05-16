@@ -3,8 +3,6 @@
  */
 #include <linux/module.h>	/* Needed by all modules */
 #include <linux/kernel.h>	/* Needed for KERN_INFO */
-#include <linux/usb.h>		/* Needed for driver macros*/
-#include <linux/usb/input.h>
 #include <linux/hid.h>
 #include <linux/interrupt.h>
 #include <linux/irqnr.h>
