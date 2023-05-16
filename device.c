@@ -22,20 +22,20 @@ static struct file_operations ft_module_keyboard_dev_fops = {
 };
 
 // file operations
-int ft_module_keyboard_open(struct inode * node, struct file * file)
+static int ft_module_keyboard_open(struct inode * node, struct file * file)
 {
 	ft_log("Misc device opened");
 	return 0;
 }
 
-ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, loff_t * offset)
+static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, loff_t * offset)
 {
 	ft_log("Misc device read");
 	return 0;
 }
 
 
-ssize_t ft_module_keyboard_write(struct file *file, char *buff, size_t, loff_t * offset)
+static ssize_t ft_module_keyboard_write(struct file * file, const char *buff, size_t, loff_t *offset)
 {
 	ft_log("Misc device written");
 	return 0;
@@ -45,7 +45,7 @@ int ft_create_misc_device(char *init_data)
 {
 	ft_module_keyboard_dev.minor = MISC_DYNAMIC_MINOR;
     ft_module_keyboard_dev.name = DEV_NAME;
-	ft_module_keyboard_dev.file_operations = &ft_module_keyboard_dev_fops;
+	ft_module_keyboard_dev.fops = &ft_module_keyboard_dev_fops;
 	return misc_register(&ft_module_keyboard_dev);
 }
 
