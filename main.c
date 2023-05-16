@@ -17,6 +17,9 @@ irqreturn_t handler(int irq, void *dev_id){
 	return IRQ_HANDLED;
 }
 
+/**
+ * Module Init. Registers a USB device and creates a misc device in /dev/ft_module_keyboard
+*/
 int init_module(void)
 {
 	int result = ft_register_usb();
@@ -24,6 +27,13 @@ int init_module(void)
 		ft_warn("USB Registration failed");
 	else
 		ft_log("USB Registration OK");
+
+	result = ft_create_misc_device("test");
+	if (result)
+		ft_warn("MiscDev Registration failed");
+	else
+		ft_log("MiscDev Registration OK");
+
 	// request interrupt line here and pray it works
 
 	// if interrupt here wrong or irq, gotta ditch the usb and go PURE PS2
@@ -51,4 +61,5 @@ void cleanup_module(void)
 {
 	ft_log("Cleaning up module");
 	ft_deregister_usb();
+	ft_destroy_misc_device();
 }

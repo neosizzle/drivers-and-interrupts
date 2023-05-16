@@ -3,10 +3,10 @@
 
 void ft_log(char *str)
 {
-	printk(KERN_INFO "[42KB] %s", str);
+	printk(KERN_INFO "[42-KB] %s", str);
 }
 
 void ft_warn(char *str)
 {
-	printk(KERN_WARNING "[42KB] WARN - %s", str);
+	printk(KERN_WARNING "[42-KB] WARN - %s", str);
 }
