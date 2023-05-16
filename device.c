@@ -28,14 +28,14 @@ int ft_module_keyboard_open(struct inode *, struct file *)
 	return 0;
 }
 
-ssize_t ft_module_keyboard_read(struct file *, char *, size_t, loff_t *);
+ssize_t ft_module_keyboard_read(struct file *, char *, size_t, loff_t *)
 {
 	ft_log("Misc device read");
 	return 0;
 }
 
 
-ssize_t ft_module_keyboard_write(struct file *, char *, size_t, loff_t *);
+ssize_t ft_module_keyboard_write(struct file *, char *, size_t, loff_t *)
 {
 	ft_log("Misc device written");
 	return 0;
