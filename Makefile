@@ -1,4 +1,5 @@
-obj-m += 42kb.o test.o
+obj-m += 42kb.o
+42kb-y += test.o
 
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
