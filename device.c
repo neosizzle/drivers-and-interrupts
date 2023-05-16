@@ -2,16 +2,20 @@
  * device.c - /dev/42module_keyboard file configration
 */
 #include <linux/miscdevice.h>
+#include <linux/cdev.h> /* cdev_add, cdev_init */
+#include <linux/device.h>
+#include <linux/fs.h> /* register_chrdev, unregister_chrdev */
+#include <linux/seq_file.h> /* seq_read, seq_lseek, single_release */
 #include "42kb.h"
 
 #define DEV_NAME "ft_module_keyboard"
 
-int ft_module_keyboard_open(struct inode *, struct file *);
-ssize_t ft_module_keyboard_read(struct file *, char *, size_t, loff_t *);
-ssize_t ft_module_keyboard_write(struct file *, const char *, size_t, loff_t *);
+static int ft_module_keyboard_open(struct inode *, struct file *);
+static ssize_t ft_module_keyboard_read(struct file *, char *, size_t, loff_t *);
+static ssize_t ft_module_keyboard_write(struct file *, const char *, size_t, loff_t *);
 char *data = 0;
 static struct miscdevice ft_module_keyboard_dev;
-struct file_operations ft_module_keyboard_dev_fops = {
+static struct file_operations ft_module_keyboard_dev_fops = {
 	.read = ft_module_keyboard_read,
 	.write = ft_module_keyboard_write,
 	.open = ft_module_keyboard_open,
