@@ -12,9 +12,9 @@ ssize_t ft_module_keyboard_write(struct file *, const char *, size_t, loff_t *);
 char *data = 0;
 static struct miscdevice ft_module_keyboard_dev;
 struct file_operations ft_module_keyboard_dev_fops = {
-	read:  ft_module_keyboard_read,
-	write:  ft_module_keyboard_write,
-	open:  ft_module_keyboard_open,
+	.read = ft_module_keyboard_read,
+	.write = ft_module_keyboard_write,
+	.open = ft_module_keyboard_open,
 };
 
 // file operations
