@@ -13,13 +13,13 @@
 static int ft_module_keyboard_open(struct inode *, struct file *);
 static ssize_t ft_module_keyboard_read(struct file *, char *, size_t, loff_t *);
 static ssize_t ft_module_keyboard_write(struct file *, const char *, size_t, loff_t *);
-char *data = 0;
 static struct miscdevice ft_module_keyboard_dev;
 static struct file_operations ft_module_keyboard_dev_fops = {
 	.read = ft_module_keyboard_read,
 	.write = ft_module_keyboard_write,
 	.open = ft_module_keyboard_open,
 };
+char *data = 0;
 
 // file operations
 static int ft_module_keyboard_open(struct inode * node, struct file * file)
@@ -49,7 +49,7 @@ int ft_create_misc_device(char *init_data)
 	return misc_register(&ft_module_keyboard_dev);
 }
 
-int ft_destroy_misc_device(void)
+void ft_destroy_misc_device(void)
 {
-	return misc_deregister(&ft_module_keyboard_dev);
+	misc_deregister(&ft_module_keyboard_dev);
 }
