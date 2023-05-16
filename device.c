@@ -22,20 +22,20 @@ static struct file_operations ft_module_keyboard_dev_fops = {
 };
 
 // file operations
-int ft_module_keyboard_open(struct inode *, struct file *)
+int ft_module_keyboard_open(struct inode * node, struct file * file)
 {
 	ft_log("Misc device opened");
 	return 0;
 }
 
-ssize_t ft_module_keyboard_read(struct file *, char *, size_t, loff_t *)
+ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, loff_t * offset)
 {
 	ft_log("Misc device read");
 	return 0;
 }
 
 
-ssize_t ft_module_keyboard_write(struct file *, char *, size_t, loff_t *)
+ssize_t ft_module_keyboard_write(struct file *file, char *buff, size_t, loff_t * offset)
 {
 	ft_log("Misc device written");
 	return 0;
