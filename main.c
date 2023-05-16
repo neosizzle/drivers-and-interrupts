@@ -8,6 +8,7 @@
 #include <linux/hid.h>
 #include <linux/interrupt.h>
 #include <linux/irqnr.h>
+#include "test.h"
 
 MODULE_AUTHOR("jng");
 MODULE_LICENSE("GPL");
