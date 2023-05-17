@@ -4,11 +4,13 @@
 #include <linux/list.h>
 
 #define KB_IRQ 1
+#define KB_PORT 0x60
 #define DEV_NAME "ft_module_keyboard"
 #define DRV_NAME "ft_module_keyboard_driver"
 
 struct test { 
-		int gay;
+	int gay;
+	struct list_head list;
 };
 
 // USB config (hot-plugging)
