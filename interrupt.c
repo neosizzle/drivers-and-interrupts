@@ -3,6 +3,7 @@
 */
 #include <linux/interrupt.h>
 #include <linux/irqnr.h>
+#include <asm/io.h>
 #include "42kb.h"
 
 struct test* event_list;
