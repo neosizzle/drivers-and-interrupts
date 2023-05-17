@@ -4,7 +4,6 @@
 #include <linux/module.h>	/* Needed by all modules */
 #include <linux/kernel.h>	/* Needed for KERN_INFO */
 #include <linux/hid.h>
-#include <linux/interrupt.h>
 #include <linux/irqnr.h>
 #include "42kb.h"
 
@@ -19,6 +18,7 @@ int init_module(void)
 	// todo heap this
 	struct test keylogger = {
 		.gay = 1,
+		.list = NULL
 	};
 	LIST_HEAD(&keylogger);
 
