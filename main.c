@@ -12,10 +12,10 @@ MODULE_AUTHOR("jng");
 MODULE_LICENSE("GPL");
 
 
-irqreturn_t handler(int irq, void *dev_id){
-	printk(KERN_INFO "IRQ HANDLED !\n");
-	return IRQ_HANDLED;
-}
+// irqreturn_t handler(int irq, void *dev_id){
+// 	printk(KERN_INFO "IRQ HANDLED !\n");
+// 	return IRQ_HANDLED;
+// }
 
 /**
  * Module Init. Registers a USB device and creates a misc device in /dev/ft_module_keyboard
