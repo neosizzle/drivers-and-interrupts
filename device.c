@@ -8,7 +8,6 @@
 #include <linux/seq_file.h> /* seq_read, seq_lseek, single_release */
 #include "42kb.h"
 
-#define DEV_NAME "ft_module_keyboard"
 
 static int ft_module_keyboard_open(struct inode *, struct file *);
 static ssize_t ft_module_keyboard_read(struct file *, char *, size_t, loff_t *);

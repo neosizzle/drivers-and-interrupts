@@ -34,6 +34,14 @@ int init_module(void)
 	else
 		ft_log("MiscDev Registration OK");
 
+	struct test keylogger = {
+		.gay = 1,
+	};
+	result = ft_register_interrupt(&keylogger);
+	if (result)
+		ft_warn("IRQ Registration failed");
+	else
+		ft_log("IRQ Registration OK");
 	// request interrupt line here and pray it works
 
 	// if interrupt here wrong or irq, gotta ditch the usb and go PURE PS2

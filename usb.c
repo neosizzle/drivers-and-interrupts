@@ -5,6 +5,7 @@
 #include <linux/usb.h>		/* Needed for driver macros*/
 #include <linux/usb/input.h>
 #include <linux/hid.h>
+#include "42kb.h"
 
 // function to handle probe
 int handle_probe(struct usb_interface *intf, const struct usb_device_id *id)
@@ -38,7 +39,7 @@ MODULE_DEVICE_TABLE(usb, definition_table);
 
 // register device
 static struct usb_driver input_driver = {
- .name = "42kbUSBDriver",
+ .name = DRV_NAME,
  .id_table = definition_table,
  .probe = handle_probe,
  .disconnect = handle_disconnect,
