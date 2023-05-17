@@ -6,6 +6,7 @@
 #include <linux/device.h>
 #include <linux/fs.h> /* register_chrdev, unregister_chrdev */
 #include <linux/seq_file.h> /* seq_read, seq_lseek, single_release */
+#include <asm/io.h>
 #include "42kb.h"
 
 
