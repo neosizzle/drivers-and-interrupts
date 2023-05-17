@@ -43,7 +43,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	{
 		entry = list_entry(ptr, struct test, list);
 		printk("[42kb] entry is %d\n", entry->gay);
-	} while (ptr != &(keylogger->list));
+	} while (ptr != keylogger->list);
 	
 	
 	return 0;
