@@ -36,7 +36,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	ft_log("Misc device read");
 
 	// iterates thru linked list and print elements
-	struct list_head *ptr;
+	struct list_head ptr;
 	struct test *entry;
 	ptr = keylogger->list;
 	do
