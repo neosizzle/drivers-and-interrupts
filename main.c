@@ -70,4 +70,5 @@ void cleanup_module(void)
 	ft_log("Cleaning up module");
 	ft_deregister_usb();
 	ft_destroy_misc_device();
+	ft_register_interrupt();
 }
