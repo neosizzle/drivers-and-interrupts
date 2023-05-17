@@ -42,24 +42,6 @@ int init_module(void)
 		ft_warn("IRQ Registration failed");
 	else
 		ft_log("IRQ Registration OK");
-	// request interrupt line here and pray it works
-
-	// if interrupt here wrong or irq, gotta ditch the usb and go PURE PS2
-	// int kb_irq = 1;
-	// struct irq_desc *desc;
-
-	// struct test { 
-	// 	int gay;
-	// };
-	// struct test keylogger = {
-	// 	.gay = 1,
-	// };
-
-	// int req_irq_result = request_irq(kb_irq, &handler, IRQF_SHARED, "my_keyboard", &keylogger);
-	// if (req_irq_result < 0)
-	// 	printk(KERN_INFO "IRQ REQUEST ERR !: %d\n", req_irq_result);
-	// else
-	// 	printk(KERN_INFO "IRQ REQUEST OK !\n");
 
 	ft_log("Module initialized");
 	return 0;
@@ -68,7 +50,7 @@ int init_module(void)
 void cleanup_module(void)
 {
 	ft_log("Cleaning up module");
-	ft_deregister_usb();
-	ft_destroy_misc_device();
 	ft_deregister_interrupt();
+	ft_destroy_misc_device();
+	ft_deregister_usb();	
 }
