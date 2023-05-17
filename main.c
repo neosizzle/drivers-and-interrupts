@@ -16,11 +16,17 @@ MODULE_LICENSE("GPL");
 int init_module(void)
 {
 	// todo heap this
+	// struct test keylogger = {
+	// 	.gay = 1,
+	// 	.list = NULL
+	// };
+	// LIST_HEAD(&keylogger);
+	struct list_head  keylogger_list;
 	struct test keylogger = {
 		.gay = 1,
-		.list = NULL
+		.list = keylogger_list
 	};
-	LIST_HEAD(&keylogger);
+	INIT_LIST_HEAD(&keylogger_list);
 
 	int result = ft_register_usb();
 	if (result)
