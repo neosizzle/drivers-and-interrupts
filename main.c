@@ -11,17 +11,17 @@
 MODULE_AUTHOR("jng");
 MODULE_LICENSE("GPL");
 
-
-// irqreturn_t handler(int irq, void *dev_id){
-// 	printk(KERN_INFO "IRQ HANDLED !\n");
-// 	return IRQ_HANDLED;
-// }
-
 /**
  * Module Init. Registers a USB device and creates a misc device in /dev/ft_module_keyboard
 */
 int init_module(void)
 {
+	// todo heap this
+	struct test keylogger = {
+		.gay = 1,
+	};
+	LIST_HEAD(&keylogger);
+
 	int result = ft_register_usb();
 	if (result)
 		ft_warn("USB Registration failed");
@@ -34,9 +34,6 @@ int init_module(void)
 	else
 		ft_log("MiscDev Registration OK");
 
-	struct test keylogger = {
-		.gay = 1,
-	};
 	result = ft_register_interrupt(&keylogger);
 	if (result)
 		ft_warn("IRQ Registration failed");

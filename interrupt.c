@@ -8,7 +8,9 @@
 struct test* event_list;
 
 irqreturn_t handler(int irq, void *dev_id){
-	printk(KERN_INFO "IRQ HANDLED !\n");
+	// printk(KERN_INFO "IRQ HANDLED !\n");
+	int scancode = inb(KB_PORT);
+	printk("SCANCODE %x\n", scancode);
 	return IRQ_HANDLED;
 }
 

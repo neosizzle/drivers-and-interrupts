@@ -1,6 +1,8 @@
 #ifndef __42KB__H__
 #define __42KB__H__
 
+#include <linux/list.h>
+
 #define KB_IRQ 1
 #define DEV_NAME "ft_module_keyboard"
 #define DRV_NAME "ft_module_keyboard_driver"
