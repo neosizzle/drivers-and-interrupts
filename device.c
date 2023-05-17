@@ -19,7 +19,7 @@ static struct file_operations ft_module_keyboard_dev_fops = {
 	.open = ft_module_keyboard_open,
 };
 char *data = 0;
-struct *test keylogger;
+struct test* keylogger;
 
 // file operations
 static int ft_module_keyboard_open(struct inode * node, struct file * file)

@@ -22,7 +22,7 @@ void ft_log(char *str);
 void ft_warn(char *str);
 
 // Misc device handling
-int ft_create_misc_device(char *init_data);
+int ft_create_misc_device(struct  test* _keylogger);
 void ft_destroy_misc_device(void);
 
 // interrupt handling
