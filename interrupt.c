@@ -10,7 +10,7 @@
 struct test* event_list;
 
 // workqueue function
-void workqueue_fn(struct work_struct *)
+void short_do_tasklet(void *unused)
 {
 	// int scancode = inb(KB_PORT);
 	// printk("WQ SCANCODE %x\n", scancode);
@@ -21,8 +21,9 @@ irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
 
 	// call workqueue here
-	// struct work_struct workqueue;
-	DECLARE_WORK(workqueue, workqueue_fn);
+	struct work_struct short_wq;
+	DECLARE_WORK(short_wq, workqueue_fn);
+	INIT_WORK(&short_wq, (void (*)(void *)) short_do_tasklet, NULL);
 	int schedule_res = schedule_work(&workqueue);
 	printk("workqueue res %d\n", schedule_res);
 
