@@ -23,7 +23,7 @@ irqreturn_t handler(int irq, void *dev_id){
 	// call workqueue here
 	struct work_struct short_wq;
 	DECLARE_WORK(short_wq, workqueue_fn);
-	INIT_WORK(&short_wq, (void (*)(void *)) short_do_tasklet, NULL);
+	INIT_WORK(&short_wq, (void (*)(void *)) short_do_tasklet);
 	int schedule_res = schedule_work(&short_wq);
 	printk("workqueue res %d\n", schedule_res);
 
