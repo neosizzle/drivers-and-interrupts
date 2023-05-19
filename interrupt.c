@@ -12,8 +12,9 @@ struct test* event_list;
 // workqueue function
 void workqueue_fn(struct work_struct *)
 {
-	int scancode = inb(KB_PORT);
-	printk("WQ SCANCODE %x\n", scancode);
+	// int scancode = inb(KB_PORT);
+	// printk("WQ SCANCODE %x\n", scancode);
+	printk("in workeueue\n");
 }
 
 irqreturn_t handler(int irq, void *dev_id){
