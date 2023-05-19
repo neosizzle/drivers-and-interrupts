@@ -10,7 +10,7 @@
 struct test* event_list;
 
 // workqueue function
-void short_do_tasklet(void *unused)
+void short_do_tasklet(struct work_struct *unused)
 {
 	// int scancode = inb(KB_PORT);
 	// printk("WQ SCANCODE %x\n", scancode);
