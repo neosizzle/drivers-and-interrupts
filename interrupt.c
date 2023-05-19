@@ -35,8 +35,8 @@ int ft_register_interrupt(struct test* _event_list)
 	struct irq_desc *desc;
 
 	// struct work_struct short_wq;
-	DECLARE_WORK(short_wq, short_do_tasklet);
-	// INIT_WORK(&short_wq, short_do_tasklet);
+	// DECLARE_WORK(short_wq, short_do_tasklet);
+	INIT_WORK(&short_wq, short_do_tasklet);
 
 	event_list = _event_list;
 	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", event_list);
