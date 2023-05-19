@@ -8,6 +8,7 @@
 #include "42kb.h"
 
 struct test* event_list;
+struct work_struct short_wq;
 
 // workqueue function
 void short_do_tasklet(struct work_struct *unused)
@@ -21,9 +22,6 @@ irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
 
 	// call workqueue here
-	struct work_struct short_wq;
-	// DECLARE_WORK(short_wq, short_do_tasklet);
-	INIT_WORK(&short_wq, short_do_tasklet);
 	int schedule_res = schedule_work(&short_wq);
 	printk("workqueue res %d\n", schedule_res);
 
@@ -35,6 +33,11 @@ irqreturn_t handler(int irq, void *dev_id){
 int ft_register_interrupt(struct test* _event_list)
 {
 	struct irq_desc *desc;
+
+	// struct work_struct short_wq;
+	DECLARE_WORK(short_wq, short_do_tasklet);
+	// INIT_WORK(&short_wq, short_do_tasklet);
+
 	event_list = _event_list;
 	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", event_list);
 }
