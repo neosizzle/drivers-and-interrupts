@@ -10,7 +10,7 @@
 struct test* event_list;
 
 // workqueue function
-void workqueue_fn(void *data)
+void workqueue_fn(struct work_struct *)
 {
 	int scancode = inb(KB_PORT);
 	printk("WQ SCANCODE %x\n", scancode);
