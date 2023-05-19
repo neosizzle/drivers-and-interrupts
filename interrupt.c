@@ -15,7 +15,7 @@ void short_do_tasklet(struct work_struct *unused)
 {
 	// int scancode = inb(KB_PORT);
 	// printk("WQ SCANCODE %x\n", scancode);
-	printk("in workeueue\n");
+	// printk("in workeueue\n");
 }
 
 irqreturn_t handler(int irq, void *dev_id){
