@@ -5,6 +5,10 @@
 
 #define KB_IRQ 1
 #define KB_PORT 0x60
+#define KEY_DOWN 0
+#define KEY_UP 1
+
+
 #define DEV_NAME "ft_module_keyboard"
 #define DRV_NAME "ft_module_keyboard_driver"
 

@@ -10,3 +10,8 @@ void ft_warn(char *str)
 {
 	printk(KERN_WARNING "[42-KB] WARN - %s", str);
 }
+
+char *ft_scancodetostr(int scancode, int isUpper)
+{
+
+}

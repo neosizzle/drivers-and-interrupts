@@ -4,14 +4,29 @@
 #include <linux/interrupt.h>
 #include <linux/irqnr.h>
 #include <asm/io.h>
+#include  <linux/workqueue.h>
 #include "42kb.h"
 
 struct test* event_list;
 
+// workqueue function
+void workqueue_fn(void *data)
+{
+	int scancode = inb(KB_PORT);
+	printk("WQ SCANCODE %x\n", scancode);
+}
+
 irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
-	int scancode = inb(KB_PORT);
-	printk("SCANCODE %x\n", scancode);
+
+	// call workqueue here
+	struct work_struct workqueue;
+	DECLARE_WORK(workqueue, workqueue_fn);
+	int schedule_res = schedule_work(&workqueue);
+	printk("workqueue res %d\n", schedule_res);
+
+	// int scancode = inb(KB_PORT);
+	// printk("SCANCODE %x\n", scancode);
 	return IRQ_HANDLED;
 }
 
