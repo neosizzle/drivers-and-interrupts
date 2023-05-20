@@ -9,7 +9,7 @@
 #define DEV_NAME "ft_module_keyboard"
 #define DRV_NAME "ft_module_keyboard_driver"
 
-struct event_struct;
+// struct event_struct;
 
 /**
  * drv_struct - the main struct of the driver, contains general information
@@ -19,7 +19,7 @@ struct event_struct;
  * total_events - number of total events (bonus)
 */
 typedef struct drv_struct {
-	struct event_struct events_head;
+	event_struct events_head;
 	int total_events; 	
 } drv_struct ;
 
