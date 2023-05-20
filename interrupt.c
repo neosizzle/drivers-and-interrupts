@@ -4,7 +4,6 @@
 #include <linux/interrupt.h>
 #include <linux/irqnr.h>
 #include <asm/io.h>
-#include  <linux/workqueue.h>
 #include "42kb.h"
 
 struct work_struct short_wq;
@@ -33,10 +32,10 @@ int ft_register_interrupt(void)
 	// DECLARE_WORK(short_wq, short_do_tasklet);
 	INIT_WORK(&short_wq, short_do_tasklet);
 
-	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", event_list);
+	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", g_driver);
 }
 
 void ft_deregister_interrupt(void)
 {
-	free_irq(KB_IRQ, event_list);
+	free_irq(KB_IRQ, g_driver);
 }

@@ -10,8 +10,6 @@
 #define DEV_NAME "ft_module_keyboard"
 #define DRV_NAME "ft_module_keyboard_driver"
 
-// struct event_struct;
-
 /**
  * event_struct - a representation of a keystroke
  * 
