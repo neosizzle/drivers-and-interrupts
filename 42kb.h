@@ -1,7 +1,8 @@
 #ifndef __42KB__H__
 #define __42KB__H__
 
-#include <linux/list.h>
+#include <linux/list.h> // list_head
+#include  <linux/workqueue.h> // work_struct
 
 #define KB_IRQ 1
 #define KB_PORT 0x60
