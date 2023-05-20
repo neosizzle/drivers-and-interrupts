@@ -7,7 +7,6 @@
 #include  <linux/workqueue.h>
 #include "42kb.h"
 
-struct test* event_list;
 struct work_struct short_wq;
 
 // workqueue function
@@ -21,15 +20,12 @@ irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
 
 	// call workqueue here
-	int schedule_res = schedule_work(&short_wq);
-	printk("workqueue res %d\n", schedule_res);
+	schedule_work(&short_wq);
 
-	// int scancode = inb(KB_PORT);
-	// printk("SCANCODE %x\n", scancode);
 	return IRQ_HANDLED;
 }
 
-int ft_register_interrupt(struct test* _event_list)
+int ft_register_interrupt(void)
 {
 	struct irq_desc *desc;
 
@@ -37,7 +33,6 @@ int ft_register_interrupt(struct test* _event_list)
 	// DECLARE_WORK(short_wq, short_do_tasklet);
 	INIT_WORK(&short_wq, short_do_tasklet);
 
-	event_list = _event_list;
 	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", event_list);
 }
 
