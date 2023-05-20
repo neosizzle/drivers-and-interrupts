@@ -9,7 +9,7 @@
 
 MODULE_AUTHOR("jng");
 MODULE_LICENSE("GPL");
-
+drv_struct *g_driver;
 /**
  * Module Init. Registers a USB device and creates a misc device in /dev/ft_module_keyboard
 */
