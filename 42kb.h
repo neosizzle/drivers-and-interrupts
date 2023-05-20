@@ -12,18 +12,6 @@
 // struct event_struct;
 
 /**
- * drv_struct - the main struct of the driver, contains general information
- * about driver state
- * 
- * events_head - head of the keylog event list
- * total_events - number of total events (bonus)
-*/
-typedef struct drv_struct {
-	event_struct events_head;
-	int total_events; 	
-} drv_struct ;
-
-/**
  * event_struct - a representation of a keystroke
  * 
  * scan_code - the scan code produced by the keyboards irq pin.
@@ -41,6 +29,18 @@ typedef struct event_struct {
 	int ascii_value; // char?
 	struct list_struct list;
 } event_struct;
+
+/**
+ * drv_struct - the main struct of the driver, contains general information
+ * about driver state
+ * 
+ * events_head - head of the keylog event list
+ * total_events - number of total events (bonus)
+*/
+typedef struct drv_struct {
+	event_struct events_head;
+	int total_events; 	
+} drv_struct ;
 
 /**
  * queue_data - struct that we will be passing into the workqueue function
