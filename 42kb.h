@@ -27,7 +27,7 @@ typedef struct event_struct {
 	char *name;
 	int	time;
 	int ascii_value; // char?
-	struct list_struct list;
+	struct list_head list;
 } event_struct;
 
 /**
