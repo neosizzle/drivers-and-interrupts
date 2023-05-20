@@ -9,6 +9,8 @@
 #define DEV_NAME "ft_module_keyboard"
 #define DRV_NAME "ft_module_keyboard_driver"
 
+struct event_struct;
+
 /**
  * drv_struct - the main struct of the driver, contains general information
  * about driver state
