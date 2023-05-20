@@ -64,7 +64,7 @@ struct test {
 };
 
 // Global refrences (module_init and module_exit does not share stack)
-drv_struct *g_driver;
+extern drv_struct *g_driver;
 
 // USB config (hot-plugging)
 int ft_register_usb(void);
