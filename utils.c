@@ -29,7 +29,7 @@ void ft_free_driver(drv_struct *driver)
 			{
 				printk("free_driver %d\n..", ++cnt);
 				// temp is curr->list->next
-				temp = curr->list->next;
+				temp = list_entry(curr->list->next, event_struct, list);
 
 				// free curr
 				kfree(curr);
