@@ -28,7 +28,7 @@ int init_module(void)
 	if (!g_driver)
 	{
 		ft_warn("Allocation for driver struct failed");
-		return ;
+		return 1;
 	}
 
 	int result = ft_register_usb();
