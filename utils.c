@@ -23,18 +23,18 @@ void ft_free_driver(drv_struct *driver)
 	{
 		if (driver->events_head)
 		{
-			curr = list_entry(curr->list->next, event_struct, list);
+			curr = list_entry(curr->list.next, event_struct, list);
 			// free refrences to other nodes ...
 			while (&(curr->list) != driver->events_head->list)
 			{
 				printk("free_driver %d\n..", ++cnt);
-				// temp is curr->list->next
-				temp = list_entry(curr->list->next, event_struct, list);
+				// temp is curr->list.next
+				temp = list_entry(curr->list.next, event_struct, list);
 
 				// free curr
 				kfree(curr);
 
-				// curr is temp->next
+				// curr is temp.next
 				curr = temp;
 			}
 			
