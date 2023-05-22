@@ -23,7 +23,7 @@ void ft_free_driver(drv_struct *driver)
 	{
 		if (driver->events_head)
 		{
-			curr = driver->events_head->list->next;
+			curr = list_entry(curr->list->next, event_struct, list);
 			// free refrences to other nodes ...
 			while (&(curr->list) != driver->events_head->list)
 			{
