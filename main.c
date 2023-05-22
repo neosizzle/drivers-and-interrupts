@@ -16,12 +16,7 @@ drv_struct *g_driver; // declaration of global struct
 */
 int init_module(void)
 {
-	// todo heap this
-	// struct test keylogger = {
-	// 	.gay = 1,
-	// 	.list = NULL
-	// };
-	// LIST_HEAD(&keylogger);
+	int result ;
 
 	// create driver struct
 	g_driver = ft_create_driver();
@@ -31,7 +26,7 @@ int init_module(void)
 		return 1;
 	}
 
-	int result = ft_register_usb();
+	result = ft_register_usb();
 	if (result)
 		ft_warn("USB Registration failed");
 	else
