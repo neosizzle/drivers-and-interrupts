@@ -26,8 +26,6 @@ irqreturn_t handler(int irq, void *dev_id){
 
 int ft_register_interrupt(void)
 {
-	struct irq_desc *desc;
-
 	// struct work_struct short_wq;
 	// DECLARE_WORK(short_wq, short_do_tasklet);
 	INIT_WORK(&short_wq, short_do_tasklet);
