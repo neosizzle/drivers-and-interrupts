@@ -19,11 +19,11 @@ void ft_free_driver(drv_struct *driver)
 	int	cnt = 0;
 
 	// free driver struct and events 
-	if (g_driver)
+	if (driver)
 	{
-		if (g_driver->events_head)
+		if (driver->events_head)
 		{
-			curr = g_driver->events_head->list->next;
+			curr = driver->events_head->list->next;
 			// free refrences to other nodes ...
 			while (&(curr->list) != driver->events_head->list)
 			{
@@ -41,7 +41,7 @@ void ft_free_driver(drv_struct *driver)
 			// free self
 			kfree(curr);
 		}
-		kfree(g_driver);
+		kfree(driver);
 	}	
 }
 
