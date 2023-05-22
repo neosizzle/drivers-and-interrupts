@@ -3,6 +3,7 @@
 
 #include <linux/list.h> // list_head
 #include  <linux/workqueue.h> // work_struct
+#include <linux/slab.h> // kmalloc and kfree
 
 #define KB_IRQ 1
 #define KB_PORT 0x60
@@ -73,6 +74,8 @@ void ft_deregister_usb(void);
 // Utilities
 void ft_log(char *str);
 void ft_warn(char *str);
+drv_struct *ft_create_driver(void);
+void ft_free_driver(drv_struct *driver);
 
 // Misc device handling
 int ft_create_misc_device(void);

@@ -23,6 +23,14 @@ int init_module(void)
 	// };
 	// LIST_HEAD(&keylogger);
 
+	// create driver struct
+	g_driver = ft_create_driver();
+	if (!g_driver)
+	{
+		ft_warn("Allocation for driver struct failed");
+		return ;
+	}
+
 	int result = ft_register_usb();
 	if (result)
 		ft_warn("USB Registration failed");
@@ -50,5 +58,7 @@ void cleanup_module(void)
 	ft_log("Cleaning up module");
 	ft_deregister_interrupt();
 	ft_destroy_misc_device();
-	ft_deregister_usb();	
+	ft_deregister_usb();
+	ft_free_driver(g_driver);
+	
 }
