@@ -38,7 +38,7 @@ typedef struct event_struct {
  * total_events - number of total events (bonus)
 */
 typedef struct drv_struct {
-	event_struct events_head;
+	event_struct *events_head;
 	int total_events; 	
 } drv_struct ;
 
