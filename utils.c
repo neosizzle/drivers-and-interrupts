@@ -100,8 +100,8 @@ queue_data *ft_create_q_data(int is_shift, int is_caps)
 		sizeof(int),
 		GFP_KERNEL
 	);
-	q_data->is_shift = is_shift;
-	q_data->is_caps = is_caps;
+	*(q_data->is_shift) = is_shift;
+	*(q_data->is_caps) = is_caps;
 	return q_data;
 }
 
