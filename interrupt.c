@@ -27,7 +27,7 @@ void read_key(struct work_struct *workqueue)
 	// post processing (shift, caps) 
 
 	// output
-	printk("WQ SCANCODE %x, qdata %d\n", scancode);
+	printk("WQ SCANCODE %x\n", scancode);
 }
 
 irqreturn_t handler(int irq, void *dev_id){
