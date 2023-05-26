@@ -12,7 +12,7 @@ int ft_create_tmpfile(void)
 		sys_close(fd);
 	}
 	else
-		printk("cannot open file\n");
+		filp_close(infile, NULL);
 	return 0;
 }
 
