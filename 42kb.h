@@ -56,7 +56,7 @@ typedef struct queue_data
 	int *is_caps;
 	int test;
 	drv_struct driver;
-	struct work_struct *worker;
+	struct work_struct worker;
 } queue_data;
 
 

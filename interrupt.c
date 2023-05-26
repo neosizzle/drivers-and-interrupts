@@ -38,7 +38,7 @@ int ft_register_interrupt(void)
 		GFP_KERNEL
 	);
 	q_data->test = 69;
-	q_data->worker = &kb_wq;
+	q_data->worker = kb_wq;
 
 	// declare work queue action
 	INIT_WORK(&kb_wq, read_key);
