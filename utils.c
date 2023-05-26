@@ -59,7 +59,7 @@ drv_struct *ft_create_driver(void)
 
 
 event_struct *ft_create_event(
-	int scancode,
+	int scan_code,
 	int is_pressed,
 	char *name,
 	int time,

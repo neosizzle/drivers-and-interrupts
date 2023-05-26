@@ -6,29 +6,42 @@
 #include <asm/io.h>
 #include "42kb.h"
 
-struct work_struct short_wq;
+struct work_struct kb_wq;
 
 // workqueue function
-void short_do_tasklet(struct work_struct *unused)
+/**
+ * read_key - Actual logic for handling keypresses
+*/
+void read_key(struct work_struct *unused)
 {
 	int scancode = inb(KB_PORT);
-	printk("WQ SCANCODE %x\n", scancode);
+	queue_data *q_data = container_of(&kb_wq, queue_data, worker);
+	printk("WQ SCANCODE %x, qdata %d\n", scancode, q_data->test);
 }
 
 irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
 
 	// call workqueue here
-	schedule_work(&short_wq);
+	schedule_work(&kb_wq);
 
 	return IRQ_HANDLED;
 }
 
 int ft_register_interrupt(void)
 {
-	// struct work_struct short_wq;
-	// DECLARE_WORK(short_wq, short_do_tasklet);
-	INIT_WORK(&short_wq, short_do_tasklet);
+	// declare queue data
+	queue_data *q_data;
+	q_data = 0;
+	q_data = kmalloc(
+		sizeof(queue_data),
+		GFP_KERNEL
+	);
+	q_data->test = 69;
+	q_data->worker = &kb_wq;
+
+	// declare work queue action
+	INIT_WORK(&kb_wq, read_key);
 
 	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", g_driver);
 }
