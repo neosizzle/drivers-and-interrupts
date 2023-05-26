@@ -16,7 +16,7 @@ void read_key(struct work_struct *unused)
 {
 	int scancode = inb(KB_PORT);
 	// queue_data *q_data = container_of(&kb_wq, queue_data, worker);
-	printk("WQ SCANCODE %x, qdata %d\n", scancode, q_data->test);
+	printk("WQ SCANCODE %x, qdata %d\n", scancode, 123);
 }
 
 irqreturn_t handler(int irq, void *dev_id){
