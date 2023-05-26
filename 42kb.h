@@ -76,31 +76,27 @@ typedef struct queue_data
 	struct work_struct worker;
 } queue_data;
 
-#ifndef SCAN_TABLE
-#define SCAN_TABLE
 
 // scancode table
-struct ft_key scancode_table[MAX_SCANCODE_SIZE] = {
-	// fill array with default value
-	[0x0 ... MAX_SCANCODE_SIZE - 1] = {NULL, NULL, -1, -1},
+// struct ft_key scancode_table[MAX_SCANCODE_SIZE] = {
+// 	// fill array with default value
+// 	[0x0 ... MAX_SCANCODE_SIZE - 1] = {NULL, NULL, -1, -1},
 
-	// fill known values
-	[0x10] = {"q", "Q", 'q', 'Q'},
-	[0x11] = {"w", "W", 'w', 'W'},
-	[0x12] = {"e", "E", 'e', 'E'},
-	[0x13] = {"r", "R", 'r', 'R'},
-	[0x14] = {"t", "T", 't', 'T'},
-	[0x15] = {"y", "Y", 'y', 'Y'},
-	[0x16] = {"u", "U", 'u', 'U'},
-	[0x17] = {"i", "I", 'i', 'I'},
-	[0x18] = {"o", "O", 'o', 'O'},
-};
-
-#endif  //!SCAN_TABLE
+// 	// fill known values
+// 	[0x10] = {"q", "Q", 'q', 'Q'},
+// 	[0x11] = {"w", "W", 'w', 'W'},
+// 	[0x12] = {"e", "E", 'e', 'E'},
+// 	[0x13] = {"r", "R", 'r', 'R'},
+// 	[0x14] = {"t", "T", 't', 'T'},
+// 	[0x15] = {"y", "Y", 'y', 'Y'},
+// 	[0x16] = {"u", "U", 'u', 'U'},
+// 	[0x17] = {"i", "I", 'i', 'I'},
+// 	[0x18] = {"o", "O", 'o', 'O'},
+// };
 
 // Global refrences (module_init and module_exit does not share stack)
 extern drv_struct *g_driver;
-// extern struct ft_key scancode_table[MAX_SCANCODE_SIZE];
+extern struct ft_key scancode_table[MAX_SCANCODE_SIZE];
 
 // USB config (hot-plugging)
 int ft_register_usb(void);

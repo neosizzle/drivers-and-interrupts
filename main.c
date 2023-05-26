@@ -10,21 +10,21 @@
 MODULE_AUTHOR("jng");
 MODULE_LICENSE("GPL");
 drv_struct *g_driver; // declaration of global struct
-// struct ft_key scancode_table[MAX_SCANCODE_SIZE] = { // declaration of scancode table
-// 	// fill array with default value
-// 	[0x0 ... MAX_SCANCODE_SIZE - 1] = {NULL, NULL, -1, -1},
+struct ft_key scancode_table[MAX_SCANCODE_SIZE] = { // declaration of scancode table
+	// fill array with default value
+	[0x0 ... MAX_SCANCODE_SIZE - 1] = {NULL, NULL, -1, -1},
 
-// 	// fill known values
-// 	[0x10] = {"q", "Q", 'q', 'Q'},
-// 	[0x11] = {"w", "W", 'w', 'W'},
-// 	[0x12] = {"e", "E", 'e', 'E'},
-// 	[0x13] = {"r", "R", 'r', 'R'},
-// 	[0x14] = {"t", "T", 't', 'T'},
-// 	[0x15] = {"y", "Y", 'y', 'Y'},
-// 	[0x16] = {"u", "U", 'u', 'U'},
-// 	[0x17] = {"i", "I", 'i', 'I'},
-// 	[0x18] = {"o", "O", 'o', 'O'},
-// }
+	// fill known values
+	[0x10] = {"q", "Q", 'q', 'Q'},
+	[0x11] = {"w", "W", 'w', 'W'},
+	[0x12] = {"e", "E", 'e', 'E'},
+	[0x13] = {"r", "R", 'r', 'R'},
+	[0x14] = {"t", "T", 't', 'T'},
+	[0x15] = {"y", "Y", 'y', 'Y'},
+	[0x16] = {"u", "U", 'u', 'U'},
+	[0x17] = {"i", "I", 'i', 'I'},
+	[0x18] = {"o", "O", 'o', 'O'},
+}
 
 /**
  * Module Init. Registers a USB device and creates a misc device in /dev/ft_module_keyboard
