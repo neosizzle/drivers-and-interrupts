@@ -22,12 +22,28 @@ void read_key(struct work_struct *workqueue)
 	if (scancode >= 0x80) is_pressed = 0;
 	if (!is_pressed) scancode -= 0x80;
 
+	ft_key key = scancode_table[scan_code];
+	if (is_pressed)
+	{
+		if (key.ascii == -1)
+			printk("unknown key pressed\n");
+		else
+			printk("%s is pressed\n", key.name);
+	}
+	else
+	{
+		if (key.ascii == -1)
+			printk("unknown key released\n");
+		else
+			printk("%s is released\n", key.name);
+	}
+
 	// event storing
 
 	// post processing (shift, caps) 
 
 	// output
-	printk("WQ SCANCODE %x\n", scancode);
+	// printk("WQ SCANCODE %x\n", scancode);
 }
 
 irqreturn_t handler(int irq, void *dev_id){
