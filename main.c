@@ -24,7 +24,7 @@ struct ft_key scancode_table[MAX_SCANCODE_SIZE] = { // declaration of scancode t
 	[0x16] = {"u", "U", 'u', 'U'},
 	[0x17] = {"i", "I", 'i', 'I'},
 	[0x18] = {"o", "O", 'o', 'O'},
-}
+};
 
 /**
  * Module Init. Registers a USB device and creates a misc device in /dev/ft_module_keyboard
