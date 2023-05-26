@@ -14,19 +14,19 @@
 #define MAX_SCANCODE_SIZE 0x80
 
 /**
- * key - a representation of a key
+ * ft_key - a representation of a key
  * 
  * name - name of the key
  * caps_name - capital variation of the key name
  * ascii - ascii code of key, -1 if none
  * caps_ascii - ascii code of capital key, -1 if none
 */
-typedef struct key {
+typedef struct ft_key {
 	char *name;
 	char *caps_name;
 	char ascii;
 	char caps_ascii;
-} key;
+} ft_key;
 
 
 /**
@@ -79,7 +79,7 @@ typedef struct queue_data
 
 // scancode table
 
-struct key scancode_table[MAX_SCANCODE_SIZE] = {
+struct ft_key scancode_table[MAX_SCANCODE_SIZE] = {
 	// fill array with default value
 	[0x0 ... MAX_SCANCODE_SIZE - 1] = {NULL, NULL, -1, -1},
 
