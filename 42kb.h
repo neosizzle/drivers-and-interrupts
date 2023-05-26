@@ -79,7 +79,7 @@ typedef struct queue_data
 
 // scancode table
 
-struct key scancode_table[SCANCODE_ARRAY_SIZE] = {
+struct key scancode_table[MAX_SCANCODE_SIZE] = {
 	// fill array with default value
 	[0x0 ... MAX_SCANCODE_SIZE - 1] = {NULL, NULL, -1, -1},
 
@@ -93,7 +93,7 @@ struct key scancode_table[SCANCODE_ARRAY_SIZE] = {
 	[0x16] = {"u", "U", 'u', 'U'},
 	[0x17] = {"i", "I", 'i', 'I'},
 	[0x18] = {"o", "O", 'o', 'O'},
-}
+};
 
 // Global refrences (module_init and module_exit does not share stack)
 extern drv_struct *g_driver;
