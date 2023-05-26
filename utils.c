@@ -57,6 +57,39 @@ drv_struct *ft_create_driver(void)
 	return res;
 }
 
+
+event_struct *ft_create_event(
+	int scancode,
+	int is_pressed,
+	char *name,
+	int time,
+	int ascii_value,
+	)
+{
+	event_struct *res;
+
+	res = 0;
+	res = kmalloc(
+		sizeof(event_struct),
+		GFP_KERNEL
+	);
+	res->scan_code = scan_code;
+	res->is_pressed = is_pressed;
+	res->name = name;
+	res->time = time;
+	res->ascii_value = ascii_value;
+	INIT_LIST_HEAD(&(res->list));
+
+	return res;
+}
+
+void ft_free_event(event_struct *event)
+{
+	if (event->name)
+		kfree(event->name);
+	kfree(event);
+}
+
 // char *ft_scancodetostr(int scancode, int isUpper)
 // {
 

@@ -76,6 +76,14 @@ void ft_log(char *str);
 void ft_warn(char *str);
 drv_struct *ft_create_driver(void);
 void ft_free_driver(drv_struct *driver);
+drv_struct *ft_create_driver(void);
+event_struct *ft_create_event(
+	int scancode,
+	int is_pressed,
+	char *name,
+	int time,
+	int ascii_value,
+	);
 
 // Misc device handling
 int ft_create_misc_device(void);

@@ -17,6 +17,7 @@ drv_struct *g_driver; // declaration of global struct
 int init_module(void)
 {
 	int result ;
+	event_struct* first_event;
 
 	// create driver struct
 	g_driver = ft_create_driver();
@@ -25,6 +26,15 @@ int init_module(void)
 		ft_warn("Allocation for driver struct failed");
 		return 1;
 	}
+
+	// create head event
+	first_event = ft_create_event(-1, -1, NULL, -1, -1);
+	if (!first_event)
+	{
+		ft_warn("Allocation for first event failed");
+		return 1;
+	}
+	g_driver->events_head = first_event;
 
 	result = ft_register_usb();
 	if (result)
