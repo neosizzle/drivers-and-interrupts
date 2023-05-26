@@ -18,6 +18,7 @@ void ft_free_driver(drv_struct *driver)
 
 	int	cnt = 0;
 
+	printk("reach\n");
 	// free driver struct and events 
 	if (driver)
 	{
