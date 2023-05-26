@@ -15,7 +15,7 @@ struct work_struct kb_wq;
 void read_key(struct work_struct *workqueue)
 {
 	int scancode = inb(KB_PORT);
-	queue_data *q_data = container_of(workqueue, queue_data, worker);
+	queue_data *q_data = container_of(workqueue, struct queue_data, worker);
 	printk("WQ SCANCODE %x, qdata %d\n", scancode, q_data->test);
 }
 
@@ -30,11 +30,9 @@ irqreturn_t handler(int irq, void *dev_id){
 
 int ft_register_interrupt(void)
 {
-	// declare work queue action
-	INIT_WORK(&kb_wq, read_key);
+	queue_data *q_data;
 
 	// declare queue data
-	queue_data *q_data;
 	q_data = 0;
 	q_data = kmalloc(
 		sizeof(queue_data),
@@ -42,6 +40,9 @@ int ft_register_interrupt(void)
 	);
 	q_data->test = 69;
 	q_data->worker = kb_wq;
+
+	// declare work queue action
+	INIT_WORK(&q_data->worker, read_key);
 
 	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", g_driver);
 }
