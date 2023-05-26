@@ -15,7 +15,7 @@ struct work_struct kb_wq;
 void read_key(struct work_struct *workqueue)
 {
 	int scancode = inb(KB_PORT);
-	queue_data *q_data = container_of(workqueue, struct queue_data, worker);
+	queue_data *q_data = container_of(workqueue, queue_data, worker);
 	printk("WQ SCANCODE %x, qdata %d\n", scancode, q_data->test);
 }
 
