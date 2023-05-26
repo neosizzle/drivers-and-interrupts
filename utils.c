@@ -18,13 +18,14 @@ void ft_free_driver(drv_struct *driver)
 
 	int	cnt = 0;
 
-	printk("reach\n");
 	// free driver struct and events 
 	if (driver)
 	{
 		if (driver->events_head)
 		{
+			printk("events head \n");
 			curr = list_entry(curr->list.next, event_struct, list);
+			printk("curr \n");
 			// free refrences to other nodes ...
 			while (&(curr->list) != &(driver->events_head->list))
 			{
