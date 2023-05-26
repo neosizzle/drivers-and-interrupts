@@ -41,7 +41,7 @@ int ft_register_interrupt(void)
 	// q_data->worker = kb_wq;
 
 	// declare work queue action
-	INIT_WORK(&kb_wq, read_key);
+	// INIT_WORK(&kb_wq, read_key);
 
 	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", g_driver);
 }
