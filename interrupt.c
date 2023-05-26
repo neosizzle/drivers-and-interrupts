@@ -6,7 +6,7 @@
 #include <asm/io.h>
 #include "42kb.h"
 
-struct work_struct kb_wq;
+queue_data *q_data;
 
 // workqueue function
 /**
@@ -23,18 +23,13 @@ irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
 
 	// call workqueue here
-	schedule_work(&kb_wq);
+	schedule_work(&(q_data->worker));
 
 	return IRQ_HANDLED;
 }
 
 int ft_register_interrupt(void)
 {
-	queue_data *q_data;
-
-	// declare work queue action
-	INIT_WORK(&(q_data->worker), read_key);
-
 	// declare queue data
 	q_data = 0;
 	q_data = kmalloc(
@@ -42,7 +37,8 @@ int ft_register_interrupt(void)
 		GFP_KERNEL
 	);
 	q_data->test = 69;
-	q_data->worker = kb_wq;
+	// declare work queue action
+	INIT_WORK(&(q_data->worker), read_key);
 
 
 
