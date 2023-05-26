@@ -8,15 +8,26 @@
 
 queue_data *q_data;
 
-// workqueue function
 /**
  * read_key - Actual logic for handling keypresses
 */
 void read_key(struct work_struct *workqueue)
 {
 	int scancode = inb(KB_PORT);
+	int is_pressed = 1;
+
 	queue_data *q_data = container_of(workqueue, queue_data, worker);
-	printk("WQ SCANCODE %x, qdata %d\n", scancode, q_data->test);
+
+	// event creation
+	if (scancode >= 0x80) is_pressed = 0;
+	if (!is_pressed) scancode -= 0x80;
+
+	// event storing
+
+	// post processing (shift, caps) 
+
+	// output
+	printk("WQ SCANCODE %x, qdata %d\n", scancode);
 }
 
 irqreturn_t handler(int irq, void *dev_id){
@@ -31,12 +42,13 @@ irqreturn_t handler(int irq, void *dev_id){
 int ft_register_interrupt(void)
 {
 	// declare queue data
-	q_data = 0;
-	q_data = kmalloc(
-		sizeof(queue_data),
-		GFP_KERNEL
-	);
-	q_data->test = 69;
+	q_data = ft_create_q_data(0, 0);
+	if (!q_data)
+	{
+		ft_warn("Queue data creation failed\n");
+		return 1;
+	}
+
 	// declare work queue action
 	INIT_WORK(&(q_data->worker), read_key);
 
@@ -47,5 +59,6 @@ int ft_register_interrupt(void)
 
 void ft_deregister_interrupt(void)
 {
+	ft_free_q_data(q_data);
 	free_irq(KB_IRQ, g_driver);
 }

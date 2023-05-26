@@ -11,6 +11,24 @@
 #define DEV_NAME "ft_module_keyboard"
 #define DRV_NAME "ft_module_keyboard_driver"
 
+#define MAX_SCANCODE_SIZE 0x80
+
+/**
+ * key - a representation of a key
+ * 
+ * name - name of the key
+ * caps_name - capital variation of the key name
+ * ascii - ascii code of key, -1 if none
+ * caps_ascii - ascii code of capital key, -1 if none
+*/
+typedef struct key {
+	char *name;
+	char *caps_name;
+	char ascii;
+	char caps_ascii;
+} key;
+
+
 /**
  * event_struct - a representation of a keystroke
  * 
@@ -54,16 +72,28 @@ typedef struct queue_data
 {
 	int *is_shift;
 	int *is_caps;
-	int test;
 	drv_struct driver;
 	struct work_struct worker;
 } queue_data;
 
 
-struct test { 
-	int gay;
-	struct list_head list;
-};
+// scancode table
+
+struct key scancode_table[SCANCODE_ARRAY_SIZE] = {
+	// fill array with default value
+	[0x0 ... MAX_SCANCODE_SIZE - 1] = {NULL, NULL, -1, -1},
+
+	// fill known values
+	[0x10] = {"q", "Q", 'q', 'Q'},
+	[0x11] = {"w", "W", 'w', 'W'},
+	[0x12] = {"e", "E", 'e', 'E'},
+	[0x13] = {"r", "R", 'r', 'R'},
+	[0x14] = {"t", "T", 't', 'T'},
+	[0x15] = {"y", "Y", 'y', 'Y'},
+	[0x16] = {"u", "U", 'u', 'U'},
+	[0x17] = {"i", "I", 'i', 'I'},
+	[0x18] = {"o", "O", 'o', 'O'},
+}
 
 // Global refrences (module_init and module_exit does not share stack)
 extern drv_struct *g_driver;
@@ -85,6 +115,8 @@ event_struct *ft_create_event(
 	int time,
 	int ascii_value
 	);
+queue_data *ft_create_q_data(int is_shift, int is_caps);
+void ft_free_q_data(queue_data * q_data);
 
 // Misc device handling
 int ft_create_misc_device(void);

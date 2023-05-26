@@ -87,6 +87,37 @@ void ft_free_event(event_struct *event)
 	kfree(event);
 }
 
+queue_data *ft_create_q_data(int is_shift, int is_caps)
+{
+	queue_data *q_data;
+
+	q_data = 0;
+	q_data = kmalloc(
+		sizeof(queue_data),
+		GFP_KERNEL
+	);
+	q_data->is_shift = kmalloc(
+		sizeof(int),
+		GFP_KERNEL
+	);
+	q_data->is_shift = is_shift;
+	q_data->is_caps = is_caps;
+	return q_data;
+}
+
+void ft_free_q_data(queue_data * q_data)
+{
+	if (q_data)
+	{
+		flush_work(&q_data->worker);
+		if (q_data->is_shift)
+			kfree(q_data->is_shift);
+		if (q_data->is_caps)
+			kfree(q_data->is_caps);
+		kfree(q_data);
+	}
+}
+
 // char *ft_scancodetostr(int scancode, int isUpper)
 // {
 
