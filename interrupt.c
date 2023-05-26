@@ -22,7 +22,7 @@ void read_key(struct work_struct *workqueue)
 	if (scancode >= 0x80) is_pressed = 0;
 	if (!is_pressed) scancode -= 0x80;
 
-	ft_key key = scancode_table[scan_code];
+	ft_key key = scancode_table[scancode];
 	if (is_pressed)
 	{
 		if (key.ascii == -1)
