@@ -18,9 +18,9 @@ void read_key(struct work_struct *workqueue)
 
 	// queue_data *q_data = container_of(workqueue, queue_data, worker);
 
-	// // event creation
-	// if (scancode >= 0x80) is_pressed = 0;
-	// if (!is_pressed) scancode -= 0x80;
+	// event creation
+	if (scancode >= 0x80) is_pressed = 0;
+	if (!is_pressed) scancode -= 0x80;
 
 	// event storing
 
