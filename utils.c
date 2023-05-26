@@ -63,7 +63,7 @@ event_struct *ft_create_event(
 	int is_pressed,
 	char *name,
 	int time,
-	int ascii_value,
+	int ascii_value
 	)
 {
 	event_struct *res;
