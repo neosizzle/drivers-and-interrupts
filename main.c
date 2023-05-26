@@ -63,6 +63,9 @@ int init_module(void)
 	else
 		ft_log("MiscDev Registration OK");
 
+	// todo : register tmpfile
+	ft_create_tmpfile();	
+
 	result = ft_register_interrupt();
 	if (result)
 		ft_warn("IRQ Registration failed");

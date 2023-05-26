@@ -15,6 +15,7 @@ void read_key(struct work_struct *workqueue)
 {
 	int scancode = inb(KB_PORT);
 	int is_pressed = 1;
+	ft_key key;
 
 	// queue_data *q_data = container_of(workqueue, queue_data, worker);
 
@@ -22,7 +23,7 @@ void read_key(struct work_struct *workqueue)
 	if (scancode >= 0x80) is_pressed = 0;
 	if (!is_pressed) scancode -= 0x80;
 
-	ft_key key = scancode_table[scancode];
+	key = scancode_table[scancode];
 	if (is_pressed)
 	{
 		if (key.ascii == -1)

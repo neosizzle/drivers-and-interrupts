@@ -1,16 +1,25 @@
 #include <linux/kernel.h>
 #include "42kb.h"
 
+/**
+ * ft_log - log to kernel console
+*/
 void ft_log(char *str)
 {
 	printk(KERN_INFO "[42-KB] %s", str);
 }
 
+/**
+ * ft_warn - warn to kernel console
+*/
 void ft_warn(char *str)
 {
 	printk(KERN_WARNING "[42-KB] WARN - %s", str);
 }
 
+/**
+ * ft_free_driver - free driver struct
+*/
 void ft_free_driver(drv_struct *driver)
 {
 	event_struct *curr;
@@ -42,6 +51,9 @@ void ft_free_driver(drv_struct *driver)
 	}	
 }
 
+/**
+ * ft_create_driver - make driver struct
+*/
 drv_struct *ft_create_driver(void)
 {
 	drv_struct *res;
@@ -54,7 +66,9 @@ drv_struct *ft_create_driver(void)
 	return res;
 }
 
-
+/**
+ * ft_create_event - make keystroke event struct
+*/
 event_struct *ft_create_event(
 	int scan_code,
 	int is_pressed,
@@ -80,6 +94,9 @@ event_struct *ft_create_event(
 	return res;
 }
 
+/**
+ * ft_free_event - free keystroke event struct
+*/
 void ft_free_event(event_struct *event)
 {
 	if (event->name)
@@ -87,6 +104,9 @@ void ft_free_event(event_struct *event)
 	kfree(event);
 }
 
+/**
+ * ft_create_q_data - make queue data struct
+*/
 queue_data *ft_create_q_data(int is_shift, int is_caps)
 {
 	queue_data *q_data;
@@ -109,6 +129,9 @@ queue_data *ft_create_q_data(int is_shift, int is_caps)
 	return q_data;
 }
 
+/**
+ * ft_free_q_data - free queue data struct
+*/
 void ft_free_q_data(queue_data * q_data)
 {
 	if (q_data)
@@ -121,6 +144,8 @@ void ft_free_q_data(queue_data * q_data)
 		kfree(q_data);
 	}
 }
+
+
 
 // char *ft_scancodetostr(int scancode, int isUpper)
 // {
