@@ -2,6 +2,7 @@
  * tmpfile.c - /tmp/42module_keyboard file configration
 */
 #include "42kb.h"
+#include <linux/syscalls.h>
 
 int ft_create_tmpfile(void)
 {
