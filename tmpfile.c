@@ -9,10 +9,10 @@ int ft_create_tmpfile(void)
 	struct file* infile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
 	if (infile) {
 		printk("opened file\n");
-		sys_close(fd);
+		filp_close(infile, NULL);
 	}
 	else
-		filp_close(infile, NULL);
+		printk("cannot open file\n");
 	return 0;
 }
 
