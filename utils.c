@@ -16,15 +16,12 @@ void ft_free_driver(drv_struct *driver)
 	event_struct *curr;
 	event_struct *temp;
 
-	int	cnt = 0;
-
 	// free driver struct and events 
 	if (driver)
 	{
 		if (driver->events_head)
 		{
 			curr = list_entry(driver->events_head->list.next, event_struct, list);
-			printk("curr \n");
 			// free refrences to other nodes ...
 			while (&(curr->list) != &(driver->events_head->list))
 			{
