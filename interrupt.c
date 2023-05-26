@@ -32,6 +32,9 @@ int ft_register_interrupt(void)
 {
 	queue_data *q_data;
 
+	// declare work queue action
+	INIT_WORK(&(q_data->worker), read_key);
+
 	// declare queue data
 	q_data = 0;
 	q_data = kmalloc(
@@ -41,8 +44,7 @@ int ft_register_interrupt(void)
 	q_data->test = 69;
 	q_data->worker = kb_wq;
 
-	// declare work queue action
-	INIT_WORK(&(q_data->worker), read_key);
+
 
 	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", g_driver);
 }
