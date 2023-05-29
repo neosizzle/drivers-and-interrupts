@@ -12,7 +12,7 @@ int ft_create_tmpfile(void)
 {
 	tmpfile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
 	if (tmpfile) {
-		ft_log("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
+		printk("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
 		filp_close(tmpfile, NULL);
 		return 0;
 	}
@@ -35,9 +35,10 @@ void ft_destroy_tmpfile(void)
 	printk("parent got\n");
 	filp_close(tmpfile, NULL);
 	if (!parent_inode) return;
-	inode_lock(parent_inode);
 	printk("unlinking parent %s wtih destination %s\n","wut" ,tmpfile->f_path.dentry->d_name.name);
-	vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL);
-	inode_unlock(parent_inode);
-	printk("vfs unlinked\n");
+
+	// inode_lock(parent_inode);
+	// vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL);
+	// inode_unlock(parent_inode);
+	// printk("vfs unlinked\n");
 }
