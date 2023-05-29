@@ -39,5 +39,6 @@ void ft_destroy_tmpfile(void)
 	inode_lock(parent_inode);
 	vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL);
 	inode_unlock(parent_inode);
+	filp_close(tmpfile, NULL); // see if put here works?
 	printk("vfs unlinked\n");
 }
