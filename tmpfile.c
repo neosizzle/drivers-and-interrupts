@@ -12,13 +12,14 @@ int ft_create_tmpfile(void)
 {
 	tmpfile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
 	if (tmpfile) {
-		printk("opened file\n");
+		ft_log("Created tmpfile\n");
 		filp_close(tmpfile, NULL);
 		return 0;
 	}
 	else
 	{
 		printk("cannot open file\n");
+		ft_warn("Cannot create tmpfile")
 		return 1;
 	}
 }
@@ -30,7 +31,8 @@ void ft_destroy_tmpfile(void)
 
 	if (!tmpfile) return;
 	parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
-	filp_close(tmpfile, NULL);
+	if (file_count(tmpfile) > 0)
+		filp_close(tmpfile, NULL);
 	if (!parent_inode) return;
 	inode_lock(parent_inode);
 	vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL);
