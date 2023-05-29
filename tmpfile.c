@@ -22,7 +22,7 @@ int ft_write_tmpfile(char *str)
 		return 1;
 	}
 	// f_op->write(tmpfile, "hello\n", 6, &tmpoffset);
-	vfs_write(tmpfile, "hello\n", 6, &tmpoffset);
+	kernel_write(tmpfile, "hello\n", 6, &tmpoffset);
 	return 0;
 }
 
