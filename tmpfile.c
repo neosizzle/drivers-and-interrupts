@@ -32,7 +32,7 @@ void ft_destroy_tmpfile(void)
 	char *parent_name = tmpfile->f_path.dentry->d_parent->d_name.name;
 	// if (file_count(tmpfile) > 0)
 	// printk("parent got\n");
-	filp_close(tmpfile, NULL);
+	// filp_close(tmpfile, NULL);
 	if (!parent_inode) return;
 	printk("unlinking parent %s wtih destination %s\n",parent_name ,tmpfile->f_path.dentry->d_name.name);
 
