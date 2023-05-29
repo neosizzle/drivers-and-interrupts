@@ -29,7 +29,7 @@ int ft_write_tmpfile(char *str)
 
 int ft_create_tmpfile(void)
 {
-	tmpfile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
+	tmpfile = filp_open("/tmp/lol", O_WRONLY | O_CREAT, S_IRWXU);
 	if (tmpfile) {
 		printk("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
 		ft_write_tmpfile("test");
