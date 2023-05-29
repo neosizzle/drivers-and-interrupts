@@ -12,7 +12,7 @@ int ft_create_tmpfile(void)
 {
 	tmpfile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
 	if (tmpfile) {
-		ft_log("Created tmpfile\n");
+		ft_log("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
 		filp_close(tmpfile, NULL);
 		return 0;
 	}
