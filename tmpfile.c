@@ -16,6 +16,11 @@ int ft_write_tmpfile(char *str)
 	struct file_operations	*f_op = tmpfile->f_op;
 
 	printk("f_op got\n");
+	if (!f_op)
+	{
+		printk("no fop\n");
+		return 1;
+	}
 	f_op->write(tmpfile, "hello\n", 6, &tmpoffset);
 	return 0;
 }
