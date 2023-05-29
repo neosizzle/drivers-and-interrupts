@@ -37,7 +37,7 @@ void ft_destroy_tmpfile(void)
 	filp_close(tmpfile, NULL);
 	if (!parent_inode) return;
 	inode_lock(parent_inode);
-	printk("unlinking parent %s wtih destination %s\n",parent_name ,tmpfile->f_path.dentry.d_name.name);
+	printk("unlinking parent %s wtih destination %s\n",parent_name ,tmpfile->f_path.dentry->d_name.name);
 	vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL);
 	inode_unlock(parent_inode);
 	printk("vfs unlinked\n");
