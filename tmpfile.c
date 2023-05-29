@@ -5,10 +5,19 @@
 */
 #include "42kb.h"
 #include <linux/fs.h>
+#include <linux/types.h>
 
 struct file* tmpfile = 0;
+loff_t tmpoffset = 0;
 
 // TODO write to tmpfile
+int ft_write_tmpfile(char *str)
+{
+	struct file_operations	*f_op = tmpfile->f_op;
+
+	f_op->write(tmpfile, "hello\n", 6, &tmpoffset);
+	return 0;
+}
 
 int ft_create_tmpfile(void)
 {
@@ -24,7 +33,6 @@ int ft_create_tmpfile(void)
 	}
 }
 
-// TODO unlink tmpfile
 void ft_destroy_tmpfile(void)
 {
 	struct inode *parent_inode;

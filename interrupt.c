@@ -24,6 +24,7 @@ void read_key(struct work_struct *workqueue)
 	if (!is_pressed) scancode -= 0x80;
 
 	key = scancode_table[scancode];
+	ft_write_tmpfile("test");
 	if (is_pressed)
 	{
 		if (key.ascii == -1)
