@@ -22,7 +22,8 @@ int ft_write_tmpfile(char *str)
 		return 1;
 	}
 	// f_op->write(tmpfile, "hello\n", 6, &tmpoffset);
-	kernel_write(tmpfile, "hello\n", 6, &tmpoffset);
+	int ret = kernel_write(tmpfile, "hello\n", 6, &tmpoffset);
+	printk("write ret %d\n", ret);
 	return 0;
 }
 
