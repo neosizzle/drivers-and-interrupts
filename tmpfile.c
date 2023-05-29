@@ -1,5 +1,7 @@
 /**
  * tmpfile.c - /tmp/42module_keyboard file configration
+ * 
+ * unlink an open file - https://wiki.sei.cmu.edu/confluence/display/c/FIO08-C.+Take+care+when+calling+remove()+on+an+open+file
 */
 #include "42kb.h"
 #include <linux/fs.h>
@@ -29,17 +31,9 @@ void ft_destroy_tmpfile(void)
 
 	if (!tmpfile) return;
 	parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
-	char *parent_name = tmpfile->f_path.dentry->d_parent->d_name.name;
-	// if (file_count(tmpfile) > 0)
-	// printk("parent got\n");
-	// filp_close(tmpfile, NULL);
 	if (!parent_inode) return;
-	printk("unlinking parent %s wtih destination %s\n",parent_name ,tmpfile->f_path.dentry->d_name.name);
 
 	inode_lock(parent_inode);
-	struct dentry *tmpdentry = tmpfile->f_path.dentry;
-	filp_close(tmpfile, NULL); // see if put here works?
-	vfs_unlink(NULL, parent_inode, tmpdentry, NULL);
+	vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL); // deletes and closes
 	inode_unlock(parent_inode);
-	printk("vfs unlinked\n");
 }
