@@ -15,7 +15,8 @@ int ft_write_tmpfile(char *str)
 {
 	struct file_operations	*f_op = tmpfile->f_op;
 
-	f_op->write(tmpfile, "hello\n", 6, &tmpoffset);
+	printk("f_op got\n");
+	// f_op->write(tmpfile, "hello\n", 6, &tmpoffset);
 	return 0;
 }
 
@@ -24,6 +25,7 @@ int ft_create_tmpfile(void)
 	tmpfile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
 	if (tmpfile) {
 		printk("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
+		ft_write_tmpfile("test");
 		return 0;
 	}
 	else
