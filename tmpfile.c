@@ -19,7 +19,7 @@ int ft_create_tmpfile(void)
 	else
 	{
 		printk("cannot open file\n");
-		ft_warn("Cannot create tmpfile")
+		ft_warn("Cannot create tmpfile");
 		return 1;
 	}
 }
