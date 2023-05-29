@@ -21,7 +21,8 @@ int ft_write_tmpfile(char *str)
 		printk("no fop\n");
 		return 1;
 	}
-	f_op->write(tmpfile, "hello\n", 6, &tmpoffset);
+	// f_op->write(tmpfile, "hello\n", 6, &tmpoffset);
+	vfs_write(tmpfile, "hello\n", 6, &tmpoffset);
 	return 0;
 }
 
