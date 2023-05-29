@@ -13,6 +13,7 @@ int ft_create_tmpfile(void)
 	tmpfile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
 	if (tmpfile) {
 		printk("opened file\n");
+		filp_close(tmpfile, NULL);
 		return 0;
 	}
 	else
