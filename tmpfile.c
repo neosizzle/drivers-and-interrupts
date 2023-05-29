@@ -33,6 +33,8 @@ int ft_create_tmpfile(void)
 	if (tmpfile) {
 		printk("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
 		ft_write_tmpfile("test");
+		ft_write_tmpfile("test2");
+		ft_write_tmpfile("test3");
 		return 0;
 	}
 	else
