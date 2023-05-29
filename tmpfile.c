@@ -13,7 +13,6 @@ int ft_create_tmpfile(void)
 	tmpfile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
 	if (tmpfile) {
 		printk("opened file\n");
-		filp_close(tmpfile, NULL);
 		return 0;
 	}
 	else
@@ -26,15 +25,13 @@ int ft_create_tmpfile(void)
 // TODO unlink tmpfile
 void ft_destroy_tmpfile(void)
 {
-	struct inode *parent_inode;
+	 struct inode *parent_inode;
 
 	if (!tmpfile) return;
 	parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
 	filp_close(tmpfile, NULL);
 	if (!parent_inode) return;
-	printk("Parent inode get\n");
-	// inode_lock(parent_inode);
-	// // vfs_unlink(parent_inode, tmpfile->f_path.dentry, NULL); 
-	// vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL);   
-	// inode_unlock(parent_inode);
+	inode_lock(parent_inode);
+	vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL);
+	inode_unlock(parent_inode);
 }
