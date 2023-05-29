@@ -29,13 +29,13 @@ void ft_destroy_tmpfile(void)
 	struct inode *parent_inode;
 
 	if (!tmpfile) return;
-	// parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
-	// char *parent_name = tmpfile->f_path.dentry->d_parent->d_name.name;
+	parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
+	char *parent_name = tmpfile->f_path.dentry->d_parent->d_name.name;
 	// if (file_count(tmpfile) > 0)
 	// printk("parent got\n");
 	filp_close(tmpfile, NULL);
 	// if (!parent_inode) return;
-	printk("unlinking parent %s wtih destination %s\n","wut" ,tmpfile->f_path.dentry->d_name.name);
+	printk("unlinking parent %s wtih destination %s\n",parent_name ,tmpfile->f_path.dentry->d_name.name);
 
 	// inode_lock(parent_inode);
 	// vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL);
