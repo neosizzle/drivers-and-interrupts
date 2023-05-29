@@ -13,7 +13,7 @@ int ft_create_tmpfile(void)
 	tmpfile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
 	if (tmpfile) {
 		printk("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
-		filp_close(tmpfile, NULL);
+		// filp_close(tmpfile, NULL);
 		return 0;
 	}
 	else
