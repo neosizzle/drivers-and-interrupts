@@ -6,25 +6,22 @@
 #include "42kb.h"
 #include <linux/fs.h>
 #include <linux/types.h>
+#include <linux/string.h>
 
 struct file* tmpfile = 0;
 loff_t tmpoffset = 0;
 
-// TODO write to tmpfile
 int ft_write_tmpfile(char *str)
 {
 	struct file_operations	*f_op = tmpfile->f_op;
 
-	printk("f_op got\n");
 	if (!f_op)
 	{
-		printk("no fop\n");
+		ft_warn("No fop on tmpfile\n")
 		return 1;
 	}
-	// f_op->write(tmpfile, "hello\n", 6, &tmpoffset);
-	int ret = kernel_write(tmpfile, "hello\n", 6, &tmpoffset);
-	printk("write ret %d\n", ret);
-	return 0;
+
+	return kernel_write(tmpfile, str, strlen(str), &tmpoffset);
 }
 
 int ft_create_tmpfile(void)
@@ -32,9 +29,6 @@ int ft_create_tmpfile(void)
 	tmpfile = filp_open("/tmp/lol", O_WRONLY | O_CREAT, S_IRWXU);
 	if (tmpfile) {
 		printk("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
-		ft_write_tmpfile("test");
-		ft_write_tmpfile("test2");
-		ft_write_tmpfile("test3");
 		return 0;
 	}
 	else
