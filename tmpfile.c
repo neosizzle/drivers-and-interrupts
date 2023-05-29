@@ -32,7 +32,7 @@ void ft_destroy_tmpfile(void)
 	filp_close(tmpfile, NULL);
 	parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
 	if (!parent_inode) return;
-	printk("parent node obtainable\n")
+	printk("parent node obtainable\n");
 	// inode_lock(parent_inode);
 	// // vfs_unlink(parent_inode, tmpfile->f_path.dentry, NULL); 
 	// vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL);   
