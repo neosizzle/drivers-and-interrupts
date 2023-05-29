@@ -4,19 +4,35 @@
 #include "42kb.h"
 #include <linux/fs.h>
 
+struct file* tmpfile = 0;
+
+// TODO write to tmpfile
+
 int ft_create_tmpfile(void)
 {
-	struct file* infile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
-	if (infile) {
+	tmpfile = filp_open("/tmp/lol", O_RDONLY | O_CREAT, S_IRWXU);
+	if (tmpfile) {
 		printk("opened file\n");
-		filp_close(infile, NULL);
+		filp_close(tmpfile, NULL);
+		return 0;
 	}
 	else
+	{
 		printk("cannot open file\n");
-	return 0;
+		return 1;
+	}
 }
 
+// TODO unlink tmpfile
 void ft_destroy_tmpfile(void)
 {
-	
+	struct inode *parent_inode;
+
+	if (!tmpfile) return;
+	filp_close(tmpfile, NULL);
+	parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
+	if (!parent_inode) return;
+	inode_lock(parent_inode);
+	vfs_unlink(parent_inode, tmpfile->f_path.dentry, NULL);    
+	inode_unlock(parent_inode);
 }
