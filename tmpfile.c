@@ -31,7 +31,7 @@ void ft_destroy_tmpfile(void)
 
 	if (!tmpfile) return;
 	parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
-	if (file_count(tmpfile) > 0)
+	// if (file_count(tmpfile) > 0)
 		filp_close(tmpfile, NULL);
 	if (!parent_inode) return;
 	inode_lock(parent_inode);
