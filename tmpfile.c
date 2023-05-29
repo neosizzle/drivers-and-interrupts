@@ -27,11 +27,10 @@ int ft_create_tmpfile(void)
 void ft_destroy_tmpfile(void)
 {
 	struct inode *parent_inode;
-	char *parent_name;
 
 	if (!tmpfile) return;
 	parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
-	parent_name = tmpfile->f_path.dentry->d_parent->d_name.name;
+	char *parent_name = tmpfile->f_path.dentry->d_parent->d_name.name;
 	// if (file_count(tmpfile) > 0)
 	printk("parent got\n");
 	filp_close(tmpfile, NULL);
