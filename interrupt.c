@@ -7,8 +7,12 @@
 #include <linux/input.h>
 #include "42kb.h"
 
+#include <linux/tty.h>
+
 queue_data *q_data;
 
+// /dev/input/by-path to find 
+// https://github.com/haloboy777/keyboard-driver/blob/master/driver.c
 void my_printk(char *string)
 {
 	struct tty_struct *my_tty;
