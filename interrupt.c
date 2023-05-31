@@ -41,7 +41,7 @@ void read_key(struct work_struct *workqueue)
 
 irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
-
+	my_printk("hello");
 	// call workqueue here
 	schedule_work(&(q_data->worker));
 

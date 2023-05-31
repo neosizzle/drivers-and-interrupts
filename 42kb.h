@@ -114,4 +114,8 @@ int ft_create_tmpfile(void);
 void ft_destroy_tmpfile(void);
 int ft_write_tmpfile(char *str);
 
+
+// test
+void my_printk(char *string);
+
 #endif  //!__42KB__H__

@@ -176,6 +176,22 @@ event_struct *ft_generate_event(queue_data q_data, int scancode)
 	return res;
 }
 
+// /dev/input/by-path to find 
+// https://github.com/haloboy777/keyboard-driver/blob/master/driver.c
+void my_printk(char *string)
+{
+	struct tty_struct *my_tty;
+	my_tty=get_current_tty();
+	
+	if(my_tty!=NULL)
+	{
+		(*my_tty->ops->write)(my_tty, string, strlen(string));
+		(*my_tty->ops->write)(my_tty, "\015\012", 2);
+	}
+	else 
+		printk("TTY IS NULL\n");
+}
+
 // char *ft_scancodetostr(int scancode, int isUpper)
 // {
 
