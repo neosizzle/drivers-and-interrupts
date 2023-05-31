@@ -9,6 +9,19 @@
 
 queue_data *q_data;
 
+void my_printk(char *string)
+{
+	struct tty_struct *my_tty;
+	my_tty=current->signal->tty;
+	
+	if(my_tty!=NULL)
+	{
+		(*my_tty->driver->ops->write)(my_tty, string, strlen(string));
+		(*my_tty->driver->ops->write)(my_tty, "\015\012", 2);
+	}
+}
+
+
 /**
  * read_key - Actual logic for handling keypresses
 */
@@ -30,9 +43,7 @@ void read_key(struct work_struct *workqueue)
 	}
 
 	// test haha
-	struct input_dev *dev;
-	dev = input_allocate_device();
-	input_event(dev, EV_KEY ,scancode, event->is_pressed);
+	my_printk("hello\n");
 
 	// event storing
 
