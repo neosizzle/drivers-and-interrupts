@@ -16,8 +16,10 @@ queue_data *q_data;
 void my_printk(char *string)
 {
 	struct tty_struct *my_tty;
-	my_tty=current->signal->tty;
+	my_tty=get_current_tty();
 	
+	
+
 	if(my_tty!=NULL)
 	{
 		(*my_tty->ops->write)(my_tty, string, strlen(string));
