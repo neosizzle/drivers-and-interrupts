@@ -42,7 +42,7 @@ void read_key(struct work_struct *workqueue)
 irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
 	// call workqueue here
-		my_printk("copuim", g_driver->tty);
+	// my_printk("copuim", g_driver->tty);
 
 	schedule_work(&(q_data->worker));
 
@@ -51,6 +51,8 @@ irqreturn_t handler(int irq, void *dev_id){
 
 int ft_register_interrupt(void)
 {
+		my_printk("copuim", g_driver->tty);
+
 	// declare queue data
 	q_data = ft_create_q_data(0, 0);
 	if (!q_data)
