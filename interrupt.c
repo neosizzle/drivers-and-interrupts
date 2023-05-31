@@ -66,7 +66,7 @@ irqreturn_t handler(int irq, void *dev_id){
 int ft_register_interrupt(void)
 {
 	// declare queue data
-	q_data = ft_create_q_data(0, 0);
+	q_data = ft_create_q_data(1, 0);
 	if (!q_data)
 	{
 		ft_warn("Queue data creation failed\n");
