@@ -50,7 +50,6 @@ irqreturn_t handler(int irq, void *dev_id){
 
 int ft_register_interrupt(void)
 {
-	my_printk("int reg");
 	// declare queue data
 	q_data = ft_create_q_data(0, 0);
 	if (!q_data)

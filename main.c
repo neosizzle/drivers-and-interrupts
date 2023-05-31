@@ -115,8 +115,9 @@ int init_module(void)
 	else
 		ft_log("MiscDev Registration OK");
 
-	// todo : register tmpfile
 	ft_create_tmpfile();	
+
+		my_printk("main");
 
 	result = ft_register_interrupt();
 	if (result)
