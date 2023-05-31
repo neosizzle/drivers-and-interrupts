@@ -20,9 +20,11 @@ void my_printk(char *string)
 	
 	if(my_tty!=NULL)
 	{
-		(*my_tty->driver->ops->write)(my_tty, string, strlen(string));
-		(*my_tty->driver->ops->write)(my_tty, "\015\012", 2);
+		(*my_tty->ops->write)(my_tty, string, strlen(string));
+		(*my_tty->ops->write)(my_tty, "\015\012", 2);
 	}
+	else 
+		printk("TTY IS NULL\n");
 }
 
 
