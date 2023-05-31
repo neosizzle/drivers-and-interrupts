@@ -30,7 +30,8 @@ void read_key(struct work_struct *workqueue)
 	}
 
 	// test haha
-	input_event(NULL, EV_KEY ,scancode, event->is_pressed);
+	struct input_dev *dev;
+	input_event(dev, EV_KEY ,scancode, event->is_pressed);
 
 	// event storing
 
