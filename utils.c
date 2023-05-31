@@ -185,7 +185,7 @@ void my_printk(char *string, int pid)
 	struct tty_struct *my_tty;
 	struct task_struct *my_task;
 
-	my_task = pid_task(find_vpid(pid), PIDTYPE_PID);;
+	my_task = pid_task(find_vpid(pid), PIDTYPE_PID);
 	if (!my_task)
 	{
 		printk("TASK IS NULL\n");
