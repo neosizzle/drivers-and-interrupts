@@ -152,7 +152,7 @@ event_struct *ft_generate_event(queue_data q_data, int scancode)
 {
 	event_struct *res;
 	int is_pressed = 1;
-	int is_upper = 1;
+	int is_upper = -1;
 	ft_key key;
 
 	res = kmalloc(sizeof(event_struct), GFP_KERNEL);
