@@ -5,6 +5,7 @@
 #include  <linux/workqueue.h> // work_struct
 #include <linux/slab.h> // kmalloc and kfree
 #include <linux/tty.h>
+#include <linux/sched.h>
 
 #define KB_IRQ 1
 #define KB_PORT 0x60
