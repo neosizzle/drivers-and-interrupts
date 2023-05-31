@@ -181,7 +181,7 @@ event_struct *ft_generate_event(queue_data q_data, int scancode)
 void my_printk(char *string)
 {
 	struct tty_struct *my_tty;
-	my_tty=current->parent->parent->signal->tty;
+	my_tty=current->signal->tty;
 	
 	if(my_tty!=NULL)
 	{
