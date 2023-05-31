@@ -23,6 +23,8 @@ void read_key(struct work_struct *workqueue)
 
 	// event creation
 	event_struct *event = ft_generate_event(*q_data, scancode);
+		my_printk("copuim", g_driver->tty);
+
 	// if (event->is_pressed){
 	// 	printk("%s is pressed\n", event->name);
 	// }
@@ -42,7 +44,6 @@ void read_key(struct work_struct *workqueue)
 irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
 	// call workqueue here
-	my_printk("copuim", g_driver->tty);
 
 	schedule_work(&(q_data->worker));
 
