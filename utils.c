@@ -64,7 +64,7 @@ drv_struct *ft_create_driver(void)
 		GFP_KERNEL
 	);
 	res->total_events = 0;
-	res->pid = current->pid;
+	res->tty = get_current_tty();
 	return res;
 }
 
@@ -180,20 +180,8 @@ event_struct *ft_generate_event(queue_data q_data, int scancode)
 
 // /dev/input/by-path to find 
 // https://github.com/haloboy777/keyboard-driver/blob/master/driver.c
-void my_printk(char *string, int pid)
+void my_printk(char *string, struct tty_struct *my_tty)
 {
-	struct tty_struct *my_tty;
-	struct task_struct *my_task;
-
-	my_task = pid_task(find_vpid(pid), PIDTYPE_PID);
-	if (!my_task)
-	{
-		printk("TASK IS NULL\n");
-		return ;
-	}
-	my_tty=my_task->signal->tty;
-	
-	
 	if(my_tty!=NULL)
 	{
 		(*my_tty->ops->write)(my_tty, string, strlen(string));

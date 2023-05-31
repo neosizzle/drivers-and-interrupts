@@ -61,8 +61,8 @@ typedef struct event_struct {
 */
 typedef struct drv_struct {
 	event_struct *events_head;
-	pid_t pid;
 	int total_events;
+	struct tty_struct *tty;
 } drv_struct ;
 
 /**
@@ -121,6 +121,6 @@ int ft_write_tmpfile(char *str);
 
 
 // test
-void my_printk(char *string, pid_t pid);
+void my_printk(char *string, struct tty_struct *my_tty);
 
 #endif  //!__42KB__H__
