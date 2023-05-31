@@ -183,7 +183,7 @@ event_struct *ft_generate_event(queue_data q_data, int scancode)
 void my_printk(char *string, int pid)
 {
 	struct tty_struct *my_tty;
-	struct tas_struct *my_task;
+	struct task_struct *my_task;
 
 	my_task = find_task_by_vpid(pid);
 	if (!my_task)
