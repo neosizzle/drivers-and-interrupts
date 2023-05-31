@@ -24,7 +24,7 @@ void read_key(struct work_struct *workqueue)
 	if (event->is_pressed){
 		printk("%s is pressed\n", event->name);
 	}
-	if (event->is_released){
+	else{
 		printk("%s is released\n", event->name);
 	}
 	// if (scancode >= 0x80) is_pressed = 0;
