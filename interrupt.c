@@ -42,6 +42,7 @@ void read_key(struct work_struct *workqueue)
 irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
 	// call workqueue here
+	my_printk("hello");
 	schedule_work(&(q_data->worker));
 
 	return IRQ_HANDLED;
@@ -50,7 +51,6 @@ irqreturn_t handler(int irq, void *dev_id){
 int ft_register_interrupt(void)
 {
 	// declare queue data
-	my_printk("hello");
 	q_data = ft_create_q_data(0, 0);
 	if (!q_data)
 	{
@@ -60,8 +60,6 @@ int ft_register_interrupt(void)
 
 	// declare work queue action
 	INIT_WORK(&(q_data->worker), read_key);
-
-
 
 	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", g_driver);
 }
