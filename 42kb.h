@@ -4,6 +4,7 @@
 #include <linux/list.h> // list_head
 #include  <linux/workqueue.h> // work_struct
 #include <linux/slab.h> // kmalloc and kfree
+#include <linux/tty.h>
 
 #define KB_IRQ 1
 #define KB_PORT 0x60

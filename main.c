@@ -7,8 +7,6 @@
 #include <linux/irqnr.h>
 #include "42kb.h"
 
-#include <linux/tty.h>
-
 MODULE_AUTHOR("jng");
 MODULE_LICENSE("GPL");
 drv_struct *g_driver; // declaration of global struct
