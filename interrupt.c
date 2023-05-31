@@ -17,27 +17,34 @@ void read_key(struct work_struct *workqueue)
 	int is_pressed = 1;
 	ft_key key;
 
-	// queue_data *q_data = container_of(workqueue, queue_data, worker);
+	queue_data *q_data = container_of(workqueue, queue_data, worker);
 
 	// event creation
-	if (scancode >= 0x80) is_pressed = 0;
-	if (!is_pressed) scancode -= 0x80;
+	event_struct *event = ft_generate_event(*q_data, scancode);
+	if (event->is_pressed){
+		printk("%s is pressed\n", event->name);
+	}
+	if (event->is_released){
+		printk("%s is released\n", event->name);
+	}
+	// if (scancode >= 0x80) is_pressed = 0;
+	// if (!is_pressed) scancode -= 0x80;
 
-	key = scancode_table[scancode];
-	if (is_pressed)
-	{
-		if (key.ascii == -1)
-			printk("unknown key pressed\n");
-		else
-			printk("%s is pressed\n", key.name);
-	}
-	else
-	{
-		if (key.ascii == -1)
-			printk("unknown key released\n");
-		else
-			printk("%s is released\n", key.name);
-	}
+	// key = scancode_table[scancode];
+	// if (is_pressed)
+	// {
+	// 	if (key.ascii == -1)
+	// 		printk("unknown key pressed\n");
+	// 	else
+	// 		printk("%s is pressed\n", key.name);
+	// }
+	// else
+	// {
+	// 	if (key.ascii == -1)
+	// 		printk("unknown key released\n");
+	// 	else
+	// 		printk("%s is released\n", key.name);
+	// }
 
 	// event storing
 

@@ -145,7 +145,36 @@ void ft_free_q_data(queue_data * q_data)
 	}
 }
 
+/**
+ * generate_event - generate event object given scancode and queuedata
+*/
+event_struct *ft_generate_event(queue_data q_data, int scancode)
+{
+	event_struct *res;
+	int is_pressed = 1;
+	int is_upper = 1;
+	ft_key key;
 
+	res = kmalloc(sizeof(event_struct), GFP_KERNEL);
+	if (!res) return res;
+	if (scancode >= 0x80) is_pressed = 0;
+	if (!is_pressed) scancode -= 0x80;
+
+	if (q_data.is_shift) is_upper *= -1;
+	if (q_data.is_caps) is_upper *= -1;
+
+	key = scancode_table[scancode];
+	res->scan_code = scancode;
+	res->is_pressed = is_pressed;
+	res->name = key.name ? (is_upper ? key.caps_name : key.name) : "unknown";
+	res->time = 69;
+	res->ascii_value = is_upper ? key.caps_ascii : key.ascii;
+	
+	// init list head
+	INIT_LIST_HEAD(&(res->list));
+
+	return res;
+}
 
 // char *ft_scancodetostr(int scancode, int isUpper)
 // {
