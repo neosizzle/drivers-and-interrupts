@@ -17,7 +17,7 @@ int ft_write_tmpfile(char *str)
 
 	if (!f_op)
 	{
-		ft_warn("No fop on tmpfile\n")
+		ft_warn("No fop on tmpfile\n");
 		return 1;
 	}
 
