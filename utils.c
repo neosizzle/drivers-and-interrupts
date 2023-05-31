@@ -160,15 +160,15 @@ event_struct *ft_generate_event(queue_data q_data, int scancode)
 	if (scancode >= 0x80) is_pressed = 0;
 	if (!is_pressed) scancode -= 0x80;
 
-	printk("q_data.is_shift %d, q_data.is_caps %d, is_upper %d\n", q_data.is_shift, q_data.is_caps, is_upper);
-	if (q_data.is_shift) is_upper *= -1;
-	if (q_data.is_caps) is_upper *= -1;
-	printk("2 q_data.is_shift %d, q_data.is_caps %d, is_upper %d\n", q_data.is_shift, q_data.is_caps, is_upper);
+	printk("q_data.is_shift %d, q_data.is_caps %d, is_upper %d\n", *(q_data.is_shift), *(q_data.is_caps), is_upper);
+	if (*(q_data.is_shift)) is_upper *= -1;
+	if (*(q_data.is_caps)) is_upper *= -1;
+	printk("2 q_data.is_shift %d, q_data.is_caps %d, is_upper %d\n", *(q_data.is_shift), *(q_data.is_caps), is_upper);
 
 	key = scancode_table[scancode];
 	res->scan_code = scancode;
 	res->is_pressed = is_pressed;
-	res->name = key.name ? (!is_upper? key.caps_name : key.name) : "unknown";
+	res->name = key.name ? (is_upper? key.caps_name : key.name) : "unknown";
 	res->time = 69;
 	res->ascii_value = is_upper ? key.caps_ascii : key.ascii;
 	
