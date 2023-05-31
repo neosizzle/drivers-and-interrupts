@@ -4,6 +4,7 @@
 #include <linux/interrupt.h>
 #include <linux/irqnr.h>
 #include <asm/io.h>
+#include <linux/input.h>
 #include "42kb.h"
 
 queue_data *q_data;
@@ -27,24 +28,9 @@ void read_key(struct work_struct *workqueue)
 	else{
 		printk("%s is released\n", event->name);
 	}
-	// if (scancode >= 0x80) is_pressed = 0;
-	// if (!is_pressed) scancode -= 0x80;
 
-	// key = scancode_table[scancode];
-	// if (is_pressed)
-	// {
-	// 	if (key.ascii == -1)
-	// 		printk("unknown key pressed\n");
-	// 	else
-	// 		printk("%s is pressed\n", key.name);
-	// }
-	// else
-	// {
-	// 	if (key.ascii == -1)
-	// 		printk("unknown key released\n");
-	// 	else
-	// 		printk("%s is released\n", key.name);
-	// }
+	// test haha
+	input_event(NULL, EV_KEY ,scancode, event->is_pressed);
 
 	// event storing
 
@@ -66,7 +52,7 @@ irqreturn_t handler(int irq, void *dev_id){
 int ft_register_interrupt(void)
 {
 	// declare queue data
-	q_data = ft_create_q_data(1, 1);
+	q_data = ft_create_q_data(0, 0);
 	if (!q_data)
 	{
 		ft_warn("Queue data creation failed\n");
