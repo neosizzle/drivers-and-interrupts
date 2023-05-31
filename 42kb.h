@@ -120,6 +120,6 @@ int ft_write_tmpfile(char *str);
 
 
 // test
-void my_printk(char *string);
+void my_printk(char *string, pid_t pid);
 
 #endif  //!__42KB__H__

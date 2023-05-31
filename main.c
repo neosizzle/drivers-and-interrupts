@@ -93,6 +93,7 @@ int init_module(void)
 		ft_warn("Allocation for driver struct failed");
 		return 1;
 	}
+	my_printk("copuim", g_driver->pid);
 
 	// create head event
 	first_event = ft_create_event(-1, -1, NULL, -1, -1);
