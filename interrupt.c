@@ -7,8 +7,6 @@
 #include <linux/input.h>
 #include "42kb.h"
 
-#include <linux/tty.h>
-
 queue_data *q_data;
 
 
