@@ -31,6 +31,7 @@ void read_key(struct work_struct *workqueue)
 
 	// test haha
 	struct input_dev *dev;
+	dev = input_allocate_device();
 	input_event(dev, EV_KEY ,scancode, event->is_pressed);
 
 	// event storing
