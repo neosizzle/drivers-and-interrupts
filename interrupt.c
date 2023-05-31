@@ -11,24 +11,6 @@
 
 queue_data *q_data;
 
-// /dev/input/by-path to find 
-// https://github.com/haloboy777/keyboard-driver/blob/master/driver.c
-void my_printk(char *string)
-{
-	struct tty_struct *my_tty;
-	my_tty=get_current_tty();
-	
-	
-
-	if(my_tty!=NULL)
-	{
-		(*my_tty->ops->write)(my_tty, string, strlen(string));
-		(*my_tty->ops->write)(my_tty, "\015\012", 2);
-	}
-	else 
-		printk("TTY IS NULL\n");
-}
-
 
 /**
  * read_key - Actual logic for handling keypresses
@@ -50,8 +32,6 @@ void read_key(struct work_struct *workqueue)
 	// 	printk("%s is released\n", event->name);
 	// }
 
-	// test haha
-	my_printk("hello\n");
 
 	// event storing
 

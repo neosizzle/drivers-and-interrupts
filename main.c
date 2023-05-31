@@ -78,53 +78,70 @@ struct ft_key scancode_table[MAX_SCANCODE_SIZE] = { // declaration of scancode t
 	[0x4D] = {"rightarrow", "rightarrow", -1, -1},
 };
 
+// /dev/input/by-path to find 
+// https://github.com/haloboy777/keyboard-driver/blob/master/driver.c
+void my_printk(char *string)
+{
+	struct tty_struct *my_tty;
+	my_tty=get_current_tty();
+	
+	if(my_tty!=NULL)
+	{
+		(*my_tty->ops->write)(my_tty, string, strlen(string));
+		(*my_tty->ops->write)(my_tty, "\015\012", 2);
+	}
+	else 
+		printk("TTY IS NULL\n");
+}
+
 /**
  * Module Init. Registers a USB device and creates a misc device in /dev/ft_module_keyboard
 */
 int init_module(void)
 {
-	int result ;
-	event_struct* first_event;
+	my_printk("hello");
+	// int result ;
+	// event_struct* first_event;
 
-	// create driver struct
-	g_driver = ft_create_driver();
-	if (!g_driver)
-	{
-		ft_warn("Allocation for driver struct failed");
-		return 1;
-	}
+	// // create driver struct
+	// g_driver = ft_create_driver();
+	// if (!g_driver)
+	// {
+	// 	ft_warn("Allocation for driver struct failed");
+	// 	return 1;
+	// }
 
-	// create head event
-	first_event = ft_create_event(-1, -1, NULL, -1, -1);
-	if (!first_event)
-	{
-		ft_warn("Allocation for first event failed");
-		return 1;
-	}
-	g_driver->events_head = first_event;
+	// // create head event
+	// first_event = ft_create_event(-1, -1, NULL, -1, -1);
+	// if (!first_event)
+	// {
+	// 	ft_warn("Allocation for first event failed");
+	// 	return 1;
+	// }
+	// g_driver->events_head = first_event;
 
-	result = ft_register_usb();
-	if (result)
-		ft_warn("USB Registration failed");
-	else
-		ft_log("USB Registration OK");
+	// result = ft_register_usb();
+	// if (result)
+	// 	ft_warn("USB Registration failed");
+	// else
+	// 	ft_log("USB Registration OK");
 
-	result = ft_create_misc_device();
-	if (result)
-		ft_warn("MiscDev Registration failed");
-	else
-		ft_log("MiscDev Registration OK");
+	// result = ft_create_misc_device();
+	// if (result)
+	// 	ft_warn("MiscDev Registration failed");
+	// else
+	// 	ft_log("MiscDev Registration OK");
 
-	// todo : register tmpfile
-	ft_create_tmpfile();	
+	// // todo : register tmpfile
+	// ft_create_tmpfile();	
 
-	result = ft_register_interrupt();
-	if (result)
-		ft_warn("IRQ Registration failed");
-	else
-		ft_log("IRQ Registration OK");
+	// result = ft_register_interrupt();
+	// if (result)
+	// 	ft_warn("IRQ Registration failed");
+	// else
+	// 	ft_log("IRQ Registration OK");
 
-	ft_log("Module initialized");
+	// ft_log("Module initialized");
 	return 0;
 }
 
