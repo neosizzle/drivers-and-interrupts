@@ -28,10 +28,13 @@ int ft_create_tmpfile(void)
 {
 	char *time;
 	char *filename;
+	char *prefix;
 
 	time = ft_itoa(ktime_get_seconds());
 	filename = kmalloc(69, GFP_KERNEL);
-	filename = strcat("/tmp/42kb", time);
+	prefix = kmalloc(69, GFP_KERNEL);
+	strcpy(prefix, "/tmp/42kb");
+	filename = strcat(prefix, time);
 	tmpfile = filp_open(filename, O_WRONLY | O_CREAT, S_IRWXU);
 	// kfree(filename);
 	// kfree(time);
