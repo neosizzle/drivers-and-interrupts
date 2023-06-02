@@ -49,6 +49,8 @@ int ft_create_tmpfile(void)
 void ft_log_tmpfile(void)
 {
 	char *temp_str;
+	struct list_head *head_ptr;
+	struct event_struct *entry;
 
 	head_ptr = g_driver->events_head->list.next;
 	while (head_ptr != &(g_driver->events_head->list))
