@@ -26,7 +26,15 @@ int ft_write_tmpfile(char *str)
 
 int ft_create_tmpfile(void)
 {
-	tmpfile = filp_open("/tmp/42kb.log", O_WRONLY | O_CREAT, S_IRWXU);
+	char *time;
+	char *filename;
+
+	time = ft_itoa(ktime_get_seconds());
+	filename = kmalloc(69, GFP_KERNEL);
+	filename = strcat("/tmp/42kb", time);
+	kfree(time);
+	tmpfile = filp_open(filename, O_WRONLY | O_CREAT, S_IRWXU);
+	kfree(filename);
 	if (tmpfile) {
 		printk("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
 		return 0;
@@ -40,10 +48,22 @@ int ft_create_tmpfile(void)
 
 void ft_log_tmpfile(void)
 {
-	time64_t time;
+	char *temp_str;
 
-	time = ktime_get_seconds();
-	printk("ITOA   %s\n", ft_itoa(time));
+	head_ptr = g_driver->events_head->list.next;
+	while (head_ptr != &(g_driver->events_head->list))
+	{
+		entry = list_entry(head_ptr, struct event_struct, list);
+
+		if (entry->is_pressed)
+		{
+			temp_str = event_to_str(*entry);
+			ft_write_tmpfile(temp_str);
+			kfree(temp_str);
+		}
+
+		head_ptr = head_ptr->next;
+	}
 }
 
 void ft_destroy_tmpfile(void)
