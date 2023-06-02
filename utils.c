@@ -184,7 +184,7 @@ char *event_to_str(event_struct event)
 	char *output_str = kmalloc(69420, GFP_KERNEL);
 	ktime_t time;
 
-	time = ktime_get();
+	time = ktime_get_real();
 	if (!output_str)
 		return output_str;
 	if (event.is_pressed){
