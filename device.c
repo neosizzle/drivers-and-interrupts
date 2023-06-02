@@ -35,7 +35,6 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	char *output_str;
 	char *temp_str;
 	
-	total_read_len = 0;
 	head_ptr = &(g_driver->events_head->list);
 	do
 	{
