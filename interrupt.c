@@ -33,6 +33,8 @@ void read_key(struct work_struct *workqueue)
 
 
 	// event storing
+	list_add_tail(&(event->list), &(q_data->driver->events_head->list));
+
 
 	// post processing (shift, caps) 
 

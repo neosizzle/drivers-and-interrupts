@@ -51,10 +51,9 @@ struct ft_key scancode_table[MAX_SCANCODE_SIZE] = { // declaration of scancode t
 	[0x21] = {"f", "F", 'f', 'F'},
 	[0x22] = {"g", "G", 'g', 'G'},
 	[0x23] = {"h", "H", 'h', 'H'},
-	[0x24] = {"i", "I", 'i', 'I'},
-	[0x25] = {"j", "J", 'j', 'J'},
-	[0x26] = {"k", "K", 'k', 'K'},
-	[0x27] = {"l", "L", 'l', 'L'},
+	[0x24] = {"j", "J", 'j', 'J'},
+	[0x25] = {"k", "K", 'k', 'K'},
+	[0x26] = {"l", "L", 'l', 'L'},
 	[0x1C] = {"enter", "enter", '\n', '\n'},
 
 	[0x2A] = {"shift", "shift", -1 , -1},
