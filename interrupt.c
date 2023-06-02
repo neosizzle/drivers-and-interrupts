@@ -23,14 +23,13 @@ void read_key(struct work_struct *workqueue)
 
 	// event creation
 	event_struct *event = ft_generate_event(*q_data, scancode);
-		my_printk("copuim", g_driver->tty);
 
-	// if (event->is_pressed){
-	// 	printk("%s is pressed\n", event->name);
-	// }
-	// else{
-	// 	printk("%s is released\n", event->name);
-	// }
+	if (event->is_pressed){
+		printk("%s is pressed\n", event->name);
+	}
+	else{
+		printk("%s is released\n", event->name);
+	}
 
 
 	// event storing
