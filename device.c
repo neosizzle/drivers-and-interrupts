@@ -36,6 +36,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	char *temp_str;
 	char *temp_str_dup;
 	
+	ft_log("Misc device read");
 	output_str = kmalloc(69420, GFP_KERNEL);
 	head_ptr = &(g_driver->events_head->list);
 	do
