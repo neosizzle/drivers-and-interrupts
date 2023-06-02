@@ -38,15 +38,54 @@ int ft_create_tmpfile(void)
 	}
 }
 
+static char    *ft_itoa(time64_t nbr)
+{
+	int		len;
+	long	n;
+	char	*str;
+
+	// if (nbr == -2147483648)
+	// 	return ("-2147483648");
+	len = 0;
+	n_tmp = nbr;
+	while (n_tmp)
+	{
+		n_tmp /= 10
+		len += 1;
+	}
+	if (nbr < 0)
+	{
+		len += 1;
+		nbr *= -1;
+	}
+	if (!(str = (char *)kmalloc(sizeof(char) * len + 1)))
+		return (NULL);
+	str[len] ='\0';
+	while (nbr)
+	{
+		str[len] = (n % 10) + '0';
+		nbr /= 10;
+	}
+	return (str);
+}
+
+// void ft_log_tmpfile(void)
+// {
+// 	time64_t time;
+
+// 	time = ktime_get_seconds();
+// 	printk("ITOA   %s\n", ft_itoa(time))
+// }
+
 void ft_destroy_tmpfile(void)
 {
-	struct inode *parent_inode;
+	// struct inode *parent_inode;
 
-	if (!tmpfile) return;
-	parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
-	if (!parent_inode) return;
+	// if (!tmpfile) return;
+	// parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
+	// if (!parent_inode) return;
 
-	inode_lock(parent_inode);
-	vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL); // deletes and closes
-	inode_unlock(parent_inode);
+	// inode_lock(parent_inode);
+	// vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL); // deletes and closes
+	// inode_unlock(parent_inode);
 }
