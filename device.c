@@ -38,6 +38,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	
 	output_str = kmalloc(69420, GFP_KERNEL);
 	head_ptr = &(g_driver->events_head->list);
+	printk("headptr is now %p\n", head_ptr);
 	do
 	{
 		entry = list_entry(head_ptr, struct event_struct, list);
@@ -46,8 +47,8 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 		output_str = strcat(output_str, temp_str);
 		printk("%s\n", output_str);
 		// kfree(temp_str);
-
 		head_ptr = head_ptr->next;
+		printk("headptr is now %p\n", head_ptr);
 	} while (head_ptr != &(g_driver->events_head->list));
 
 	// iterates thru linked list and print elements
