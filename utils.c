@@ -141,10 +141,10 @@ void ft_free_q_data(queue_data * q_data)
 	if (q_data)
 	{
 		flush_work(&q_data->worker);
-		if (q_data->is_shift)
-			kfree(q_data->is_shift);
-		if (q_data->is_caps)
-			kfree(q_data->is_caps);
+		// if (q_data->is_shift)
+		// 	kfree(q_data->is_shift);
+		// if (q_data->is_caps)
+		// 	kfree(q_data->is_caps);
 		kfree(q_data);
 	}
 }
