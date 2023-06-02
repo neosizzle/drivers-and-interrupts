@@ -36,7 +36,7 @@ void read_key(struct work_struct *workqueue)
 
 	// post processing (shift, caps) LOCK HERE
 	// if event name is caps, toggle caps
-	if (!strcmp("caps", event->name))
+	if (!strcmp("caps", event->name) && event->is_released)
 		is_caps = !is_caps;
 	if (!strcmp("shift", event->name))
 	{
