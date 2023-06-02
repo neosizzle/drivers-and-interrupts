@@ -8,7 +8,8 @@
 #include "42kb.h"
 
 queue_data *q_data;
-
+int is_caps = 0;
+int is_shift = 0;
 
 /**
  * read_key - Actual logic for handling keypresses
@@ -22,25 +23,31 @@ void read_key(struct work_struct *workqueue)
 
 	queue_data *q_data = container_of(workqueue, queue_data, worker);
 
+	// preprocessing LOCK HERE
+	q_data->is_caps = is_caps;
+	q_data->is_shift = is_shift; 
+
 	// event creation
 	event_struct *event = ft_generate_event(*q_data, scancode);
-
-	// if (event->is_pressed){
-	// 	printk("%s is pressed\n", event->name);
-	// }
-	// else{
-	// 	printk("%s is released\n", event->name);
-	// }
-
 
 	// event storing
 	list_add_tail(&(event->list), &(q_data->driver.events_head->list));
 
 
-	// post processing (shift, caps) 
+	// post processing (shift, caps) LOCK HERE
+	// if event name is caps, toggle caps
+	if (!strcmp("caps", event->name))
+		is_caps = !is_caps
+	if (!strcmp("shift"))
+	{
+		if (event->is_pressed)
+			is_shift = 1;
+		else
+			is_shift = 0;
+	}
 
-	output_str = kmalloc(69420, GFP_KERNEL);
 	// output
+	output_str = kmalloc(69420, GFP_KERNEL);
 	if (event->is_pressed){
 		sprintf(output_str, "%s is pressed\n", event->name);
 		// printk("%s is pressed\n", event->name);
