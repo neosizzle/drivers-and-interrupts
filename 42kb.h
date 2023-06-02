@@ -103,6 +103,7 @@ queue_data *ft_create_q_data(int is_shift, int is_caps);
 void ft_free_q_data(queue_data * q_data);
 event_struct *ft_generate_event(queue_data q_data, int scancode);
 char *event_to_str(event_struct event);
+char	*ft_itoa(long long nbr);
 
 // Misc device handling
 int ft_create_misc_device(void);

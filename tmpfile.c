@@ -38,13 +38,13 @@ int ft_create_tmpfile(void)
 	}
 }
 
-// void ft_log_tmpfile(void)
-// {
-// 	time64_t time;
+void ft_log_tmpfile(void)
+{
+	time64_t time;
 
-// 	time = ktime_get_seconds();
-// 	printk("ITOA   %s\n", ft_itoa(time))
-// }
+	time = ktime_get_seconds();
+	printk("ITOA   %s\n", ft_itoa(time))
+}
 
 void ft_destroy_tmpfile(void)
 {
