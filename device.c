@@ -36,7 +36,6 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	char *temp_str;
 	char *temp_str_dup;
 	
-	if (*offset == -1) return 0;
 	output_str = kmalloc(69420, GFP_KERNEL);
 	head_ptr = &(g_driver->events_head->list);
 	do
@@ -48,6 +47,8 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 		// kfree(temp_str);
 		head_ptr = head_ptr->next;
 	} while (head_ptr != &(g_driver->events_head->list));
+
+	printk("%s", output_str);
 
 	// iterates thru linked list and print elements
 	// struct list_head *ptr;
@@ -62,10 +63,11 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	
 	// if (*offset == strlen(output_str))
 	// 	return 0;
-	ft_log("Misc device read");
-	copy_to_user(buff, output_str, strlen(output_str));
-	*offset = -1;
-	return -1;
+
+	// ft_log("Misc device read");
+	// copy_to_user(buff, output_str, strlen(output_str));
+	// *offset = strlen(output_str);
+	return 0;
 }
 
 
