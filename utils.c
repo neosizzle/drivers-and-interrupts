@@ -190,7 +190,7 @@ char *event_to_str(event_struct event)
     getnstimeofday(&now);
     time_to_tm(now.tv_sec, 0, &tm);
 
-	if (event->is_pressed){
+	if (event.is_pressed){
 		sprintf(output_str, "[%d:%d:%d] %s(%x) is pressed\n", tm.tm_hour, tm.tm_min, tm.tm_sec, event.name, event.scan_code);
 		// printk("%s is pressed\n", event->name);
 	}
