@@ -47,15 +47,7 @@ void read_key(struct work_struct *workqueue)
 	}
 
 	// output
-	output_str = kmalloc(69420, GFP_KERNEL);
-	if (event->is_pressed){
-		sprintf(output_str, "%s is pressed\n", event->name);
-		// printk("%s is pressed\n", event->name);
-	}
-	else{
-		sprintf(output_str, "%s is released\n", event->name);
-		// printk("%s is released\n", event->name);
-	}
+	output_str = event_to_str(*event);
 	ft_write_tmpfile(output_str);
 	kfree(output_str);
 	// printk("WQ SCANCODE %x\n", scancode);

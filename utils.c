@@ -1,4 +1,5 @@
 #include <linux/kernel.h>
+#include <linux/time.h>
 #include "42kb.h"
 
 /**
@@ -176,6 +177,28 @@ event_struct *ft_generate_event(queue_data q_data, int scancode)
 	INIT_LIST_HEAD(&(res->list));
 
 	return res;
+}
+
+char *event_to_str(event_struct event)
+{
+	char *output_str = kmalloc(69420, GFP_KERNEL);
+	struct timespec now;
+    struct tm tm;
+
+	if (!output_str)
+		return output_str;
+    getnstimeofday(&now);
+    time_to_tm(now.tv_sec, 0, &tm);
+
+	if (event->is_pressed){
+		sprintf(output_str, "[%d:%d:%d] %s is pressed\n", tm.tm_hour, tm.tm_min, tm.tm_sec, event->name);
+		// printk("%s is pressed\n", event->name);
+	}
+	else{
+		sprintf(output_str, "[%d:%d:%d] %s is released\n", tm.tm_hour, tm.tm_min, tm.tm_sec, event->name);
+		// printk("%s is released\n", event->name);
+	}
+	return output_str;
 }
 
 // /dev/input/by-path to find 
