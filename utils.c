@@ -1,4 +1,5 @@
 #include <linux/kernel.h>
+#include <linux/ktime.h>
 #include <linux/timekeeping.h>
 #include "42kb.h"
 
