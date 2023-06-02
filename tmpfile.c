@@ -36,8 +36,8 @@ int ft_create_tmpfile(void)
 	strcpy(prefix, "/tmp/42kb");
 	filename = strcat(prefix, time);
 	tmpfile = filp_open(filename, O_WRONLY | O_CREAT, S_IRWXU);
-	// kfree(filename);
-	// kfree(time);
+	kfree(filename);
+	kfree(time);
 	if (tmpfile) {
 		printk("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
 		return 0;
