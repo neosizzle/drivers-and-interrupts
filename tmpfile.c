@@ -32,9 +32,9 @@ int ft_create_tmpfile(void)
 	time = ft_itoa(ktime_get_seconds());
 	filename = kmalloc(69, GFP_KERNEL);
 	filename = strcat("/tmp/42kb", time);
-	kfree(time);
 	tmpfile = filp_open(filename, O_WRONLY | O_CREAT, S_IRWXU);
-	kfree(filename);
+	// kfree(filename);
+	// kfree(time);
 	if (tmpfile) {
 		printk("Created tmpfile %s\n", tmpfile->f_path.dentry->d_name.name);
 		return 0;
