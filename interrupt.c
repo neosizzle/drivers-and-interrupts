@@ -47,9 +47,9 @@ void read_key(struct work_struct *workqueue)
 	}
 
 	// output
-	output_str = event_to_str(*event);
-	ft_write_tmpfile(output_str);
-	kfree(output_str);
+	// output_str = event_to_str(*event);
+	// ft_write_tmpfile(output_str);
+	// kfree(output_str);
 	// printk("WQ SCANCODE %x\n", scancode);
 }
 
