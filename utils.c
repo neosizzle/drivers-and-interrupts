@@ -180,15 +180,15 @@ event_struct *ft_generate_event(queue_data q_data, int scancode)
 
 // /dev/input/by-path to find 
 // https://github.com/haloboy777/keyboard-driver/blob/master/driver.c
-void my_printk(char *string, struct task_struct *task)
-{
-	struct tty_struct *my_tty = task->signal->tty;
+// void my_printk(char *string, struct task_struct *task)
+// {
+// 	struct tty_struct *my_tty = task->signal->tty;
 
-	if(my_tty!=NULL)
-	{
-		(*my_tty->ops->write)(my_tty, string, strlen(string));
-		(*my_tty->ops->write)(my_tty, "\015\012", 2);
-	}
-	else 
-		printk("TTY IS NULL\n");
-}
+// 	if(my_tty!=NULL)
+// 	{
+// 		(*my_tty->ops->write)(my_tty, string, strlen(string));
+// 		(*my_tty->ops->write)(my_tty, "\015\012", 2);
+// 	}
+// 	else 
+// 		printk("TTY IS NULL\n");
+// }
