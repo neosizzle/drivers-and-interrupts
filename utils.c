@@ -191,11 +191,11 @@ char *event_to_str(event_struct event)
     time_to_tm(now.tv_sec, 0, &tm);
 
 	if (event->is_pressed){
-		sprintf(output_str, "[%d:%d:%d] %s is pressed\n", tm.tm_hour, tm.tm_min, tm.tm_sec, event->name);
+		sprintf(output_str, "[%d:%d:%d] %s(%x) is pressed\n", tm.tm_hour, tm.tm_min, tm.tm_sec, event.name, event.scan_code);
 		// printk("%s is pressed\n", event->name);
 	}
 	else{
-		sprintf(output_str, "[%d:%d:%d] %s is released\n", tm.tm_hour, tm.tm_min, tm.tm_sec, event->name);
+		sprintf(output_str, "[%d:%d:%d] %s(%x) is released\n", tm.tm_hour, tm.tm_min, tm.tm_sec, event.name, event.scan_code);
 		// printk("%s is released\n", event->name);
 	}
 	return output_str;
