@@ -36,8 +36,9 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	char *temp_str;
 	char *temp_str_dup;
 	
-	temp_str_dup = kmalloc(1, GFP_KERNEL);
-	temp_str_dup[0] = 0;
+	output_str = kmalloc(1234, GFP_KERNEL);
+	output_str[0] = 0;
+	strcpy(temp_str_dup, output_str);
 	head_ptr = &(g_driver->events_head->list);
 	do
 	{
@@ -45,7 +46,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 
 		temp_str = event_to_str(*entry);
 		kfree(temp_str_dup);
-		temp_str_dup = strdup(output_str); 
+		strcpy(temp_str_dup, output_str); 
 		output_str = strcat(temp_str_dup, temp_str);
 		kfree(temp_str);
 
