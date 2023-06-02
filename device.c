@@ -64,7 +64,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	ft_log("Misc device read");
 	copy_to_user(buff, output_str, strlen(output_str));
 	*offset = strlen(output_str);
-	return strlen(output_str);
+	return 0;
 }
 
 
