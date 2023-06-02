@@ -56,6 +56,7 @@ void read_key(struct work_struct *workqueue)
 irqreturn_t handler(int irq, void *dev_id){
 	// printk(KERN_INFO "IRQ HANDLED !\n");
 	// call workqueue here
+	ft_log_tmpfile();
 
 	schedule_work(&(q_data->worker));
 
@@ -74,7 +75,6 @@ int ft_register_interrupt(void)
 	q_data->driver = *(g_driver);
 	// declare work queue action
 	INIT_WORK(&(q_data->worker), read_key);
-
 	return request_irq(KB_IRQ, &handler, IRQF_SHARED, "ft_kb", g_driver);
 }
 
