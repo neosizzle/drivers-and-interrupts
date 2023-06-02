@@ -43,7 +43,7 @@ void ft_log_tmpfile(void)
 	time64_t time;
 
 	time = ktime_get_seconds();
-	printk("ITOA   %s\n", ft_itoa(time))
+	printk("ITOA   %s\n", ft_itoa(time));
 }
 
 void ft_destroy_tmpfile(void)
