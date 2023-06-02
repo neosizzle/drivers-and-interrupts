@@ -38,7 +38,6 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	
 	output_str = kmalloc(69420, GFP_KERNEL);
 	head_ptr = &(g_driver->events_head->list);
-	printk("headptr is now %p\n", head_ptr);
 	do
 	{
 		entry = list_entry(head_ptr, struct event_struct, list);
