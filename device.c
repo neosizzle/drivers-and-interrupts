@@ -62,7 +62,9 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	// 	ptr = ptr->next;
 	// } while (ptr != &(keylogger->list));
 	
+	if (*offset == strlen(output_str)) return 0;
 	buff = output_str;
+	*offset = strlen(output_str); 
 	return strlen(output_str);
 }
 
