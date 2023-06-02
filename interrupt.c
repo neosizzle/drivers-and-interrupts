@@ -38,7 +38,7 @@ void read_key(struct work_struct *workqueue)
 	// if event name is caps, toggle caps
 	if (!strcmp("caps", event->name))
 		is_caps = !is_caps;
-	if (!strcmp("shift"))
+	if (!strcmp("shift", event->name))
 	{
 		if (event->is_pressed)
 			is_shift = 1;
