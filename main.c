@@ -75,6 +75,8 @@ struct ft_key scancode_table[MAX_SCANCODE_SIZE] = { // declaration of scancode t
 	[0x50] = {"downarrow", "downarrow", -1, -1},
 	[0x4B] = {"leftarrow", "leftarrow", -1, -1},
 	[0x4D] = {"rightarrow", "rightarrow", -1, -1},
+
+	// 37 60 52 are defer signals
 };
 
 /**

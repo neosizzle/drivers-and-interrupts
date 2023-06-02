@@ -32,6 +32,20 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 {
 	ft_log("Misc device read");
 
+	struct list_head *head_ptr;
+	struct event_struct *entry;
+	char *output_str;
+	
+	head_ptr = &(g_driver->events_head->list);
+	do
+	{
+		entry = list_entry(head_ptr, struct event_struct, list);
+		output_str = event_to_str(*event);
+		printk("%s", output_str);
+		kfree(output_str);
+		head_ptr = head_ptr->next;
+	} while (head_ptr != &(g_driver->events_head->list));
+
 	// iterates thru linked list and print elements
 	// struct list_head *ptr;
 	// struct test *entry;
