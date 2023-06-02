@@ -36,7 +36,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	char *temp_str;
 	char *temp_str_dup;
 	
-	output_str = kmalloc(1, GFP_KERNEL);
+	output_str = kmalloc(694200, GFP_KERNEL);
 	output_str[0] = 0;
 	temp_str_dup = kmalloc(69420, GFP_KERNEL);
 	strcpy(temp_str_dup, output_str);
