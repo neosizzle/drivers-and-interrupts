@@ -132,6 +132,7 @@ int init_module(void)
 void cleanup_module(void)
 {
 	ft_log("Cleaning up module");
+	// print everything here
 	ft_deregister_interrupt();
 	ft_destroy_tmpfile();
 	ft_destroy_misc_device();
