@@ -33,14 +33,9 @@ void read_key(struct work_struct *workqueue)
 
 
 	// event storing
-	if (!(event->list))
+	if (!&(event->list))
 	{
 		printk("no event list\n");
-		return ;
-	}
-	if (!&(q_data->driver.events_head))
-	{
-		printk("no q_data->driver.events_head\n");
 		return ;
 	}
 	if (!&(q_data->driver.events_head->list))
