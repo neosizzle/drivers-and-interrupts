@@ -133,8 +133,9 @@ void cleanup_module(void)
 {
 	ft_log("Cleaning up module");
 	// print everything here
+	ft_log_tmpfile();
 	ft_deregister_interrupt();
-	ft_destroy_tmpfile();
+	// ft_destroy_tmpfile();
 	ft_destroy_misc_device();
 	ft_deregister_usb();
 	ft_free_driver(g_driver);
