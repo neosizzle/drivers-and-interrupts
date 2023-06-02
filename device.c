@@ -40,7 +40,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	do
 	{
 		entry = list_entry(head_ptr, struct event_struct, list);
-		output_str = event_to_str(*event);
+		output_str = event_to_str(*entry);
 		printk("%s", output_str);
 		kfree(output_str);
 		head_ptr = head_ptr->next;
