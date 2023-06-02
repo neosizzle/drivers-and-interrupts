@@ -34,12 +34,11 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	struct event_struct *entry;
 	char *output_str;
 	char *temp_str;
-	char *temp_str_dup;
 	
 	ft_log("Misc device read");
 	output_str = kmalloc(69420, GFP_KERNEL);
 	output_str[0] = 0;
-	head_ptr = &(g_driver->events_head->list.next);
+	head_ptr = g_driver->events_head->list.next;
 	while (head_ptr != &(g_driver->events_head->list))
 	{
 		entry = list_entry(head_ptr, struct event_struct, list);
