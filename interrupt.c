@@ -24,8 +24,8 @@ void read_key(struct work_struct *workqueue)
 	queue_data *q_data = container_of(workqueue, queue_data, worker);
 
 	// preprocessing LOCK HERE
-	q_data->is_caps = is_caps;
-	q_data->is_shift = is_shift; 
+	q_data->is_caps = &is_caps;
+	q_data->is_shift = &is_shift; 
 
 	// event creation
 	event_struct *event = ft_generate_event(*q_data, scancode);
