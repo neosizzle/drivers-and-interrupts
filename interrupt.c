@@ -17,9 +17,7 @@ int is_shift = 0;
 void read_key(struct work_struct *workqueue)
 {
 	int scancode = inb(KB_PORT);
-	int is_pressed = 1;
-	ft_key key;
-	char *output_str;
+	event_struct *event;
 
 	queue_data *q_data = container_of(workqueue, queue_data, worker);
 
@@ -28,7 +26,7 @@ void read_key(struct work_struct *workqueue)
 	q_data->is_shift = &is_shift; 
 
 	// event creation
-	event_struct *event = ft_generate_event(*q_data, scancode);
+	event = ft_generate_event(*q_data, scancode);
 
 	// event storing
 	list_add_tail(&(event->list), &(q_data->driver.events_head->list));
@@ -46,11 +44,6 @@ void read_key(struct work_struct *workqueue)
 			is_shift = 0;
 	}
 
-	// output
-	// output_str = event_to_str(*event);
-	// ft_write_tmpfile(output_str);
-	// kfree(output_str);
-	// printk("WQ SCANCODE %x\n", scancode);
 }
 
 irqreturn_t handler(int irq, void *dev_id){

@@ -13,7 +13,7 @@ loff_t tmpoffset = 0;
 
 int ft_write_tmpfile(char *str)
 {
-	struct file_operations	*f_op = tmpfile->f_op;
+	const struct file_operations	*f_op = tmpfile->f_op;
 
 	if (!f_op)
 	{
@@ -69,17 +69,4 @@ void ft_log_tmpfile(void)
 
 		head_ptr = head_ptr->next;
 	}
-}
-
-void ft_destroy_tmpfile(void)
-{
-	// struct inode *parent_inode;
-
-	// if (!tmpfile) return;
-	// parent_inode = tmpfile->f_path.dentry->d_parent->d_inode;
-	// if (!parent_inode) return;
-
-	// inode_lock(parent_inode);
-	// vfs_unlink(NULL, parent_inode, tmpfile->f_path.dentry, NULL); // deletes and closes
-	// inode_unlock(parent_inode);
 }

@@ -34,6 +34,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	struct event_struct *entry;
 	char *output_str;
 	char *temp_str;
+	int did_not_cpy;
 	
 	ft_log("Misc device read");
 	output_str = kmalloc(69420 * 42, GFP_KERNEL);
@@ -56,9 +57,9 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 		return 0;
 	}
 
-	copy_to_user(buff, output_str, strlen(output_str));
+	did_not_cpy = copy_to_user(buff, output_str, strlen(output_str));
 	*offset = strlen(output_str);
-	return strlen(output_str);
+	return strlen(output_str) - did_not_cpy;
 }
 
 
