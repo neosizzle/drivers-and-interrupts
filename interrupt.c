@@ -70,7 +70,7 @@ int ft_register_interrupt(void)
 		ft_warn("Queue data creation failed\n");
 		return 1;
 	}
-
+	q_data->driver = *(g_driver);
 	// declare work queue action
 	INIT_WORK(&(q_data->worker), read_key);
 
