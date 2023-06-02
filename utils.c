@@ -183,17 +183,18 @@ event_struct *ft_generate_event(queue_data q_data, int scancode)
 char *event_to_str(event_struct event)
 {
 	char *output_str = kmalloc(69420, GFP_KERNEL);
-	ktime_t time;
+	time64_t time;
 
-	time = ktime_get_real();
+	time = ktime_get_seconds();
+
 	if (!output_str)
 		return output_str;
 	if (event.is_pressed){
-		sprintf(output_str, "[%d:%d:%d] %s(%x) is pressed\n", time, time, time, event.name, event.scan_code);
+		sprintf(output_str, "[%d:%d:%d] %s(%X) Pressed\n", time, time, time, event.name, event.scan_code);
 		// printk("%s is pressed\n", event->name);
 	}
 	else{
-		sprintf(output_str, "[%d:%d:%d] %s(%x) is released\n", time, time, time, event.name, event.scan_code);
+		sprintf(output_str, "[%d:%d:%d] %s(%X) Released\n", time, time, time, event.name, event.scan_code);
 		// printk("%s is released\n", event->name);
 	}
 	return output_str;
