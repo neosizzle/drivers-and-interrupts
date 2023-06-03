@@ -5,8 +5,10 @@
 #include <linux/irqnr.h>
 #include <asm/io.h>
 #include <linux/input.h>
+#include <linux/spinlock_types.h>
 #include "42kb.h"
 
+DEFINE_SPINLOCK(q_data_spinlock);
 queue_data *q_data;
 int is_caps = 0;
 int is_shift = 0;
@@ -21,9 +23,11 @@ void read_key(struct work_struct *workqueue)
 
 	queue_data *q_data = container_of(workqueue, queue_data, worker);
 
-	// preprocessing LOCK HERE
+	// preprocessing
+	spin_lock(spinlock_t *q_data_spinlock);
 	q_data->is_caps = &is_caps;
-	q_data->is_shift = &is_shift; 
+	q_data->is_shift = &is_shift;
+	spin_unlock(spinlock_t *q_data_spinlock);
 
 	// event creation
 	event = ft_generate_event(*q_data, scancode);
@@ -32,7 +36,9 @@ void read_key(struct work_struct *workqueue)
 	list_add_tail(&(event->list), &(q_data->driver.events_head->list));
 
 
-	// post processing (shift, caps) LOCK HERE
+	// post processing (shift, caps)
+	spin_lock(spinlock_t *q_data_spinlock);
+
 	// if event name is caps, toggle caps
 	if (!strcmp("caps", event->name) && !event->is_pressed)
 		is_caps = !is_caps;
@@ -43,11 +49,10 @@ void read_key(struct work_struct *workqueue)
 		else
 			is_shift = 0;
 	}
-
+	spin_unlock(spinlock_t *q_data_spinlock);
 }
 
 irqreturn_t handler(int irq, void *dev_id){
-	// printk(KERN_INFO "IRQ HANDLED !\n");
 	// call workqueue here
 	schedule_work(&(q_data->worker));
 
