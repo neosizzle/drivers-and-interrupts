@@ -11,7 +11,7 @@
 struct file* tmpfile = 0;
 loff_t tmpoffset = 0;
 
-int ft_write_tmpfile(char *str)
+static int ft_write_tmpfile(char *str, int len)
 {
 	const struct file_operations	*f_op = tmpfile->f_op;
 
@@ -21,7 +21,7 @@ int ft_write_tmpfile(char *str)
 		return 1;
 	}
 
-	return kernel_write(tmpfile, str, strlen(str), &tmpoffset);
+	return kernel_write(tmpfile, str, len, &tmpoffset);
 }
 
 int ft_create_tmpfile(void)
@@ -64,7 +64,7 @@ void ft_log_tmpfile(void)
 		{
 			temp_str = event_to_str(*entry);
 			if (entry->ascii_value > 0)
-				ft_write_tmpfile(&(entry->ascii_value));
+				ft_write_tmpfile(&(entry->ascii_value), 1);
 			
 			// ft_write_tmpfile(temp_str);
 			kfree(temp_str);
