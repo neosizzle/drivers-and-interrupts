@@ -116,7 +116,6 @@ void ft_deregister_interrupt(void);
 // tmpfile handling
 int ft_create_tmpfile(void);
 void ft_destroy_tmpfile(void);
-int ft_write_tmpfile(char *str);
 void ft_log_tmpfile(void);
 
 // test
