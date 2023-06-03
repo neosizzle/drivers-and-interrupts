@@ -26,7 +26,7 @@ struct ft_key scancode_table[MAX_SCANCODE_SIZE] = { // declaration of scancode t
 	[0x9] = {"8", "*", '8', '*'},
 	[0xA] = {"9", "(", '9', '('},
 	[0xB] = {"0", ")", '0', ')'},
-	[0xE] = {"backspace", "backspace", -1, -1},
+	[0xE] = {"backspace", "backspace", 8, 8},
 
 
 	[0xF] = {"tab", "tab", '\t', '\t'},
