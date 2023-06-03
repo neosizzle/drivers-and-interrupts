@@ -65,7 +65,6 @@ void ft_log_tmpfile(void)
 
 		if (entry->is_pressed)
 		{
-			temp_str = event_to_str(*entry);
 			if (entry->ascii_value > 0)
 			{
 				++total_inputs;
