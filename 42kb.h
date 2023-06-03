@@ -44,7 +44,7 @@ typedef struct event_struct {
 	int is_pressed;
 	char *name;
 	int	time;
-	int ascii_value; // char?
+	char ascii_value; // char?
 	struct list_head list;
 } event_struct;
 
