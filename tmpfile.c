@@ -74,7 +74,7 @@ void ft_log_tmpfile(void)
 
 		head_ptr = head_ptr->next;
 	}
-	sprintf(temp_str, "\n\nTotal keystrokes: %d\n", ft_itoa(total_inputs));
+	sprintf(temp_str, "\n\nTotal keystrokes: %d\n", total_inputs);
 	ft_write_tmpfile(temp_str, strlen(temp_str));
 	kfree(temp_str);
 }
