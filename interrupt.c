@@ -24,10 +24,10 @@ void read_key(struct work_struct *workqueue)
 	queue_data *q_data = container_of(workqueue, queue_data, worker);
 
 	// preprocessing
-	spin_lock(spinlock_t *q_data_spinlock);
+	spin_lock(&q_data_spinlock);
 	q_data->is_caps = &is_caps;
 	q_data->is_shift = &is_shift;
-	spin_unlock(spinlock_t *q_data_spinlock);
+	spin_unlock(&q_data_spinlock);
 
 	// event creation
 	event = ft_generate_event(*q_data, scancode);
@@ -37,7 +37,7 @@ void read_key(struct work_struct *workqueue)
 
 
 	// post processing (shift, caps)
-	spin_lock(spinlock_t *q_data_spinlock);
+	spin_lock(&q_data_spinlock);
 
 	// if event name is caps, toggle caps
 	if (!strcmp("caps", event->name) && !event->is_pressed)
@@ -49,7 +49,7 @@ void read_key(struct work_struct *workqueue)
 		else
 			is_shift = 0;
 	}
-	spin_unlock(spinlock_t *q_data_spinlock);
+	spin_unlock(&q_data_spinlock);
 }
 
 irqreturn_t handler(int irq, void *dev_id){
