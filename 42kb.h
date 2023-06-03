@@ -4,6 +4,8 @@
 #include <linux/list.h> // list_head
 #include  <linux/workqueue.h> // work_struct
 #include <linux/slab.h> // kmalloc and kfree
+#include <linux/ktime.h>
+#include <linux/timekeeping.h>
 
 #define KB_IRQ 1
 #define KB_PORT 0x60
@@ -43,7 +45,7 @@ typedef struct event_struct {
 	int scan_code;
 	int is_pressed;
 	char *name;
-	int	time;
+	time64_t time;
 	char ascii_value; // char?
 	struct list_head list;
 } event_struct;

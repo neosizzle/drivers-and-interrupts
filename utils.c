@@ -1,6 +1,4 @@
 #include <linux/kernel.h>
-#include <linux/ktime.h>
-#include <linux/timekeeping.h>
 #include "42kb.h"
 
 /**
@@ -167,8 +165,8 @@ event_struct *ft_generate_event(queue_data q_data, int scancode)
 	res->scan_code = scancode;
 	res->is_pressed = is_pressed;
 	res->name = key.name ? (is_upper > 0? key.caps_name : key.name) : "unknown";
-	res->time = 69;
-	res->ascii_value = is_upper ? key.caps_ascii : key.ascii;
+	res->time = ktime_get_seconds();
+	res->ascii_value = !is_upper ? key.caps_ascii : key.ascii;
 	
 	// init list head
 	INIT_LIST_HEAD(&(res->list));
@@ -182,7 +180,7 @@ char *event_to_str(event_struct event)
 	time64_t time;
 	struct tm time_struct;
 
-	time = ktime_get_seconds();
+	time = event.time;
 	time64_to_tm(time, 0, &time_struct);
 	if (!output_str)
 		return output_str;
