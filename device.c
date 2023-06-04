@@ -8,6 +8,7 @@
 #include <linux/seq_file.h> /* seq_read, seq_lseek, single_release */
 #include "42kb.h"
 
+DEFINE_SPINLOCK(devfile_io_spinlock);
 static int ft_module_keyboard_open(struct inode *, struct file *);
 static ssize_t ft_module_keyboard_read(struct file *, char *, size_t, loff_t *);
 static ssize_t ft_module_keyboard_write(struct file *, const char *, size_t, loff_t *);
@@ -37,6 +38,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 	int did_not_cpy;
 	
 	ft_log("Misc device read");
+	spin_lock(&devfile_io_spinlock);
 	output_str = kmalloc(69420 * 42, GFP_KERNEL);
 	output_str[0] = 0;
 	head_ptr = g_driver->events_head->list.next;
@@ -50,7 +52,7 @@ static ssize_t ft_module_keyboard_read(struct file *file, char *buff, size_t, lo
 
 		head_ptr = head_ptr->next;
 	}
-	
+	spin_unlock(&devfile_io_spinlock);
 	if (*offset == strlen(output_str))
 	{
 		kfree(output_str);
